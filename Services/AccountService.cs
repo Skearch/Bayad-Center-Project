@@ -1,11 +1,14 @@
 ﻿using Bayad_Center_Project.DbContexts;
 using Bayad_Center_Project.Entities;
+using Bayad_Center_Project.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Bayad_Center_Project.Services
 {
@@ -31,6 +34,18 @@ namespace Bayad_Center_Project.Services
         {
             if (_dbContext.Users.Any(u => u.Username == user.Username))
                 throw new Exception("This username already exist.");
+
+            var invalidFields = user.GetType().GetProperties()
+            .Where(p => p.PropertyType == typeof(string))
+            .Where(p => p.GetValue(user) is string value && value.Length > p.GetCustomAttributes(typeof(MaxLengthAttribute), false)
+            .Cast<MaxLengthAttribute>()
+            .FirstOrDefault()?.Length)
+            .Select(p => p.Name);
+
+            if (invalidFields.Any())
+            {
+                throw new ValidationException($"The following fields are too long: {string.Join(", ", invalidFields)}");
+            }
 
             _dbContext.Users.Add(user);
             _dbContext.SaveChanges();

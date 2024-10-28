@@ -1,5 +1,6 @@
 ﻿using Bayad_Center_Project.DbContexts;
 using Bayad_Center_Project.Entities;
+using Bayad_Center_Project.Enums;
 using Bayad_Center_Project.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Data.SQLite;
@@ -56,7 +57,7 @@ namespace Bayad_Center_Project
                 var accountService = new AccountService(_);
                 accountService.ValidateLogin(tbUsername.Text, tbPassword.Text, AccountType.Admin);
 
-                FrmAdminView frmAdminView = new FrmAdminView();
+                FrmView frmAdminView = new FrmView();
                 frmAdminView.Show();
                 this.Hide();
 
@@ -76,7 +77,7 @@ namespace Bayad_Center_Project
                 var accountService = new AccountService(_);
                 accountService.ValidateLogin(tbUsername.Text, tbPassword.Text, AccountType.Teller);
 
-                FrmAdminView frmAdminView = new FrmAdminView();
+                FrmView frmAdminView = new FrmView();
                 frmAdminView.Show();
                 this.Hide();
 

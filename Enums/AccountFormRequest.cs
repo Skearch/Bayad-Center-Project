@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bayad_Center_Project.Entities
+namespace Bayad_Center_Project.Enums
 {
     public enum AccountFormRequest
     {

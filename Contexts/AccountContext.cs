@@ -50,6 +50,15 @@ namespace Bayad_Center_Project.DbContexts
             modelBuilder.Entity<User>()
                .Property(u => u.AccountType)
                .IsRequired();
+
+            modelBuilder.Entity<User>()
+               .Property(u => u.MiddleName);
+
+            modelBuilder.Entity<User>()
+               .Property(u => u.EmailAddress);
+
+            modelBuilder.Entity<User>()
+               .Property(u => u.PhoneNumber);
         }
     }
 }

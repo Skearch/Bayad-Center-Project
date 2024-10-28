@@ -1,5 +1,6 @@
 ﻿using Bayad_Center_Project.DbContexts;
 using Bayad_Center_Project.Entities;
+using Bayad_Center_Project.Enums;
 using Bayad_Center_Project.Services;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,7 @@ namespace Bayad_Center_Project
 
         private void FrmAccount_Load(object sender, EventArgs e)
         {
-            
+
             AccountContext _ = new AccountContext();
             var accountService = new AccountService(_);
             if (accountFormRequest.Equals(AccountFormRequest.Edit) || accountFormRequest.Equals(AccountFormRequest.View))
@@ -63,7 +64,13 @@ namespace Bayad_Center_Project
 
                     foreach (Control control in Controls)
                     {
-                        if (control is TextBox || control is DateTimePicker || control is RichTextBox || control is ComboBox)
+                        if (control is TextBox textBox)
+                            textBox.ReadOnly = true;
+
+                        if (control is RichTextBox richTextBox)
+                            richTextBox.ReadOnly = true;
+
+                        if (control is DateTimePicker || control is ComboBox)
                             control.Enabled = false;
 
                         if (control is Label)
@@ -94,7 +101,7 @@ namespace Bayad_Center_Project
                             FirstName = string.IsNullOrEmpty(tbFirstName.Text) ? null : tbFirstName.Text,
                             MiddleName = string.IsNullOrEmpty(tbMiddleName.Text) ? null : tbMiddleName.Text,
                             LastName = string.IsNullOrEmpty(tbLastName.Text) ? null : tbLastName.Text,
-                            Birthdate = DateTime.Now,
+                            Birthdate = dtpBirthdate.Value,
                             EmailAddress = string.IsNullOrEmpty(tbEmailAddress.Text) ? null : tbEmailAddress.Text,
                             PhoneNumber = string.IsNullOrEmpty(tbPhoneNumber.Text) ? null : tbPhoneNumber.Text,
                             Address = string.IsNullOrEmpty(rtbAddress.Text) ? null : rtbAddress.Text
@@ -114,7 +121,7 @@ namespace Bayad_Center_Project
                             FirstName = string.IsNullOrEmpty(tbFirstName.Text) ? null : tbFirstName.Text,
                             MiddleName = string.IsNullOrEmpty(tbMiddleName.Text) ? null : tbMiddleName.Text,
                             LastName = string.IsNullOrEmpty(tbLastName.Text) ? null : tbLastName.Text,
-                            Birthdate = DateTime.Now,
+                            Birthdate = dtpBirthdate.Value,
                             EmailAddress = string.IsNullOrEmpty(tbEmailAddress.Text) ? null : tbEmailAddress.Text,
                             PhoneNumber = string.IsNullOrEmpty(tbPhoneNumber.Text) ? null : tbPhoneNumber.Text,
                             Address = string.IsNullOrEmpty(rtbAddress.Text) ? null : rtbAddress.Text

@@ -1,14 +1,14 @@
 ﻿using Bayad_Center_Project.DbContexts;
-using Bayad_Center_Project.Entities;
+using Bayad_Center_Project.Enums;
 using Bayad_Center_Project.Services;
 using System.Data;
 using System.Windows.Forms;
 
 namespace Bayad_Center_Project
 {
-    public partial class FrmAdminView : Form
+    public partial class FrmView : Form
     {
-        public FrmAdminView()
+        public FrmView()
         {
             InitializeComponent();
         }
@@ -38,9 +38,7 @@ namespace Bayad_Center_Project
 
         private void FrmAdminView_Load(object sender, EventArgs e)
         {
-            var _ = new AccountContext();
-            var accountService = new AccountService(_);
-            accountService.PopulateUserTable(dgvAccount);
+            UpdateDGVAccount();
         }
 
         private void btnAccountReload_Click(object sender, EventArgs e)
@@ -97,7 +95,6 @@ namespace Bayad_Center_Project
                     var accountService = new AccountService(new AccountContext());
                     accountService.DeleteAccountById(SelectedUserId());
                     UpdateDGVAccount();
-                    MessageBox.Show("Account deleted successfully.", "Success");
                 }
                 catch (Exception ex)
                 {

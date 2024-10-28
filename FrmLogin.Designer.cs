@@ -40,60 +40,75 @@
             // 
             // tbUsername
             // 
+            tbUsername.BackColor = Color.FromArgb(60, 60, 60);
+            tbUsername.BorderStyle = BorderStyle.None;
+            tbUsername.ForeColor = Color.White;
             tbUsername.Location = new Point(96, 70);
             tbUsername.Name = "tbUsername";
-            tbUsername.Size = new Size(184, 23);
+            tbUsername.Size = new Size(184, 16);
             tbUsername.TabIndex = 0;
             // 
             // tbPassword
             // 
+            tbPassword.BackColor = Color.FromArgb(60, 60, 60);
+            tbPassword.BorderStyle = BorderStyle.None;
+            tbPassword.ForeColor = Color.White;
             tbPassword.Location = new Point(96, 114);
             tbPassword.Name = "tbPassword";
             tbPassword.PasswordChar = '*';
-            tbPassword.Size = new Size(184, 23);
+            tbPassword.Size = new Size(184, 16);
             tbPassword.TabIndex = 1;
             // 
             // label1
             // 
             label1.AutoSize = true;
+            label1.ForeColor = Color.White;
             label1.Location = new Point(96, 52);
             label1.Name = "label1";
-            label1.Size = new Size(60, 15);
+            label1.Size = new Size(63, 15);
             label1.TabIndex = 2;
-            label1.Text = "Username";
+            label1.Text = "Username:";
             // 
             // label2
             // 
             label2.AutoSize = true;
+            label2.ForeColor = Color.White;
             label2.Location = new Point(96, 96);
             label2.Name = "label2";
-            label2.Size = new Size(57, 15);
+            label2.Size = new Size(60, 15);
             label2.TabIndex = 3;
-            label2.Text = "Password";
+            label2.Text = "Password:";
             // 
             // btnAdmin
             // 
+            btnAdmin.BackColor = Color.FromArgb(60, 60, 60);
+            btnAdmin.FlatStyle = FlatStyle.Flat;
+            btnAdmin.ForeColor = Color.White;
             btnAdmin.Location = new Point(96, 186);
             btnAdmin.Name = "btnAdmin";
             btnAdmin.Size = new Size(89, 23);
             btnAdmin.TabIndex = 4;
             btnAdmin.Text = "Admin";
-            btnAdmin.UseVisualStyleBackColor = true;
+            btnAdmin.UseVisualStyleBackColor = false;
             btnAdmin.Click += btnAdmin_Click;
             // 
             // btnTeller
             // 
+            btnTeller.BackColor = Color.FromArgb(60, 60, 60);
+            btnTeller.FlatStyle = FlatStyle.Flat;
+            btnTeller.ForeColor = Color.White;
             btnTeller.Location = new Point(191, 186);
             btnTeller.Name = "btnTeller";
             btnTeller.Size = new Size(89, 23);
             btnTeller.TabIndex = 5;
             btnTeller.Text = "Teller";
-            btnTeller.UseVisualStyleBackColor = true;
+            btnTeller.UseVisualStyleBackColor = false;
             btnTeller.Click += btnTeller_Click;
             // 
             // label3
             // 
             label3.AutoSize = true;
+            label3.ForeColor = Color.White;
             label3.Location = new Point(96, 168);
             label3.Name = "label3";
             label3.Size = new Size(54, 15);
@@ -103,6 +118,7 @@
             // cbRememberLogin
             // 
             cbRememberLogin.AutoSize = true;
+            cbRememberLogin.ForeColor = Color.White;
             cbRememberLogin.Location = new Point(96, 143);
             cbRememberLogin.Name = "cbRememberLogin";
             cbRememberLogin.Size = new Size(84, 19);
@@ -114,6 +130,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(30, 30, 30);
             ClientSize = new Size(382, 266);
             Controls.Add(cbRememberLogin);
             Controls.Add(label3);
@@ -124,6 +141,7 @@
             Controls.Add(tbPassword);
             Controls.Add(tbUsername);
             Name = "FrmLogin";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmLogin";
             Load += FrmLogin_Load;
             ResumeLayout(false);

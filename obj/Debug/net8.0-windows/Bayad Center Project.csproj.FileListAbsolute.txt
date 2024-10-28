@@ -1,6 +1,4 @@
-C:\Users\Skearch\source\repos\Bayad Center Project\obj\Debug\net8.0-windows\Bayad_Center_Project.FrmAdminView.resources
 C:\Users\Skearch\source\repos\Bayad Center Project\obj\Debug\net8.0-windows\Bayad_Center_Project.FrmLogin.resources
-C:\Users\Skearch\source\repos\Bayad Center Project\obj\Debug\net8.0-windows\Bayad_Center_Project.FrmTellerView.resources
 C:\Users\Skearch\source\repos\Bayad Center Project\obj\Debug\net8.0-windows\Bayad Center Project.csproj.GenerateResource.cache
 C:\Users\Skearch\source\repos\Bayad Center Project\obj\Debug\net8.0-windows\Bayad Center Project.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Skearch\source\repos\Bayad Center Project\obj\Debug\net8.0-windows\Bayad Center Project.AssemblyInfoInputs.cache
@@ -78,3 +76,4 @@ C:\Users\Skearch\source\repos\Bayad Center Project\bin\Debug\net8.0-windows\runt
 C:\Users\Skearch\source\repos\Bayad Center Project\obj\Debug\net8.0-windows\Bayad Center Project.csproj.AssemblyReference.cache
 C:\Users\Skearch\source\repos\Bayad Center Project\obj\Debug\net8.0-windows\Bayad Ce.D5489F7A.Up2Date
 C:\Users\Skearch\source\repos\Bayad Center Project\bin\Debug\net8.0-windows\Bayad Center Project.dll.config
+C:\Users\Skearch\source\repos\Bayad Center Project\obj\Debug\net8.0-windows\Bayad_Center_Project.FrmView.resources

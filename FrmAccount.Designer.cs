@@ -57,6 +57,7 @@
             // label6
             // 
             label6.AutoSize = true;
+            label6.ForeColor = Color.White;
             label6.Location = new Point(362, 59);
             label6.Name = "label6";
             label6.Size = new Size(71, 15);
@@ -65,14 +66,18 @@
             // 
             // tbLastName
             // 
+            tbLastName.BackColor = Color.FromArgb(60, 60, 60);
+            tbLastName.BorderStyle = BorderStyle.None;
+            tbLastName.ForeColor = Color.White;
             tbLastName.Location = new Point(362, 77);
             tbLastName.Name = "tbLastName";
-            tbLastName.Size = new Size(169, 23);
+            tbLastName.Size = new Size(169, 16);
             tbLastName.TabIndex = 27;
             // 
             // label5
             // 
             label5.AutoSize = true;
+            label5.ForeColor = Color.White;
             label5.Location = new Point(187, 59);
             label5.Name = "label5";
             label5.Size = new Size(79, 15);
@@ -81,14 +86,18 @@
             // 
             // tbMiddleName
             // 
+            tbMiddleName.BackColor = Color.FromArgb(60, 60, 60);
+            tbMiddleName.BorderStyle = BorderStyle.None;
+            tbMiddleName.ForeColor = Color.White;
             tbMiddleName.Location = new Point(187, 77);
             tbMiddleName.Name = "tbMiddleName";
-            tbMiddleName.Size = new Size(169, 23);
+            tbMiddleName.Size = new Size(169, 16);
             tbMiddleName.TabIndex = 25;
             // 
             // label4
             // 
             label4.AutoSize = true;
+            label4.ForeColor = Color.White;
             label4.Location = new Point(12, 59);
             label4.Name = "label4";
             label4.Size = new Size(72, 15);
@@ -97,13 +106,19 @@
             // 
             // tbFirstName
             // 
+            tbFirstName.BackColor = Color.FromArgb(60, 60, 60);
+            tbFirstName.BorderStyle = BorderStyle.None;
+            tbFirstName.ForeColor = Color.White;
             tbFirstName.Location = new Point(12, 77);
             tbFirstName.Name = "tbFirstName";
-            tbFirstName.Size = new Size(169, 23);
+            tbFirstName.Size = new Size(169, 16);
             tbFirstName.TabIndex = 23;
             // 
             // dtpBirthdate
             // 
+            dtpBirthdate.CalendarForeColor = Color.White;
+            dtpBirthdate.CalendarMonthBackground = Color.FromArgb(60, 60, 60);
+            dtpBirthdate.Format = DateTimePickerFormat.Short;
             dtpBirthdate.Location = new Point(12, 121);
             dtpBirthdate.Name = "dtpBirthdate";
             dtpBirthdate.Size = new Size(169, 23);
@@ -113,6 +128,7 @@
             // label3
             // 
             label3.AutoSize = true;
+            label3.ForeColor = Color.White;
             label3.Location = new Point(12, 103);
             label3.Name = "label3";
             label3.Size = new Size(63, 15);
@@ -122,6 +138,7 @@
             // label2
             // 
             label2.AutoSize = true;
+            label2.ForeColor = Color.White;
             label2.Location = new Point(12, 317);
             label2.Name = "label2";
             label2.Size = new Size(65, 15);
@@ -130,14 +147,18 @@
             // 
             // tbPassword
             // 
+            tbPassword.BackColor = Color.FromArgb(60, 60, 60);
+            tbPassword.BorderStyle = BorderStyle.None;
+            tbPassword.ForeColor = Color.White;
             tbPassword.Location = new Point(12, 335);
             tbPassword.Name = "tbPassword";
-            tbPassword.Size = new Size(169, 23);
+            tbPassword.Size = new Size(169, 16);
             tbPassword.TabIndex = 19;
             // 
             // label1
             // 
             label1.AutoSize = true;
+            label1.ForeColor = Color.White;
             label1.Location = new Point(12, 273);
             label1.Name = "label1";
             label1.Size = new Size(68, 15);
@@ -146,13 +167,18 @@
             // 
             // tbUsername
             // 
+            tbUsername.BackColor = Color.FromArgb(60, 60, 60);
+            tbUsername.BorderStyle = BorderStyle.None;
+            tbUsername.ForeColor = Color.White;
             tbUsername.Location = new Point(12, 291);
             tbUsername.Name = "tbUsername";
-            tbUsername.Size = new Size(169, 23);
+            tbUsername.Size = new Size(169, 16);
             tbUsername.TabIndex = 17;
             // 
             // btnAction
             // 
+            btnAction.FlatStyle = FlatStyle.Flat;
+            btnAction.ForeColor = Color.White;
             btnAction.Location = new Point(372, 392);
             btnAction.Name = "btnAction";
             btnAction.Size = new Size(159, 45);
@@ -163,6 +189,7 @@
             // label7
             // 
             label7.AutoSize = true;
+            label7.ForeColor = Color.White;
             label7.Location = new Point(187, 103);
             label7.Name = "label7";
             label7.Size = new Size(81, 15);
@@ -171,14 +198,18 @@
             // 
             // tbEmailAddress
             // 
+            tbEmailAddress.BackColor = Color.FromArgb(60, 60, 60);
+            tbEmailAddress.BorderStyle = BorderStyle.None;
+            tbEmailAddress.ForeColor = Color.White;
             tbEmailAddress.Location = new Point(187, 121);
             tbEmailAddress.Name = "tbEmailAddress";
-            tbEmailAddress.Size = new Size(169, 23);
+            tbEmailAddress.Size = new Size(169, 16);
             tbEmailAddress.TabIndex = 31;
             // 
             // label8
             // 
             label8.AutoSize = true;
+            label8.ForeColor = Color.White;
             label8.Location = new Point(362, 103);
             label8.Name = "label8";
             label8.Size = new Size(88, 15);
@@ -187,9 +218,12 @@
             // 
             // tbPhoneNumber
             // 
+            tbPhoneNumber.BackColor = Color.FromArgb(60, 60, 60);
+            tbPhoneNumber.BorderStyle = BorderStyle.None;
+            tbPhoneNumber.ForeColor = Color.White;
             tbPhoneNumber.Location = new Point(362, 121);
             tbPhoneNumber.Name = "tbPhoneNumber";
-            tbPhoneNumber.Size = new Size(169, 23);
+            tbPhoneNumber.Size = new Size(169, 16);
             tbPhoneNumber.TabIndex = 33;
             // 
             // lblRequiredFields
@@ -206,6 +240,7 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label11.ForeColor = Color.White;
             label11.Location = new Point(12, 44);
             label11.Name = "label11";
             label11.Size = new Size(129, 15);
@@ -214,6 +249,9 @@
             // 
             // rtbAddress
             // 
+            rtbAddress.BackColor = Color.FromArgb(60, 60, 60);
+            rtbAddress.BorderStyle = BorderStyle.None;
+            rtbAddress.ForeColor = Color.White;
             rtbAddress.Location = new Point(12, 165);
             rtbAddress.Name = "rtbAddress";
             rtbAddress.Size = new Size(344, 75);
@@ -223,6 +261,7 @@
             // label12
             // 
             label12.AutoSize = true;
+            label12.ForeColor = Color.White;
             label12.Location = new Point(12, 147);
             label12.Name = "label12";
             label12.Size = new Size(57, 15);
@@ -233,6 +272,7 @@
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label13.ForeColor = Color.White;
             label13.Location = new Point(12, 258);
             label13.Name = "label13";
             label13.Size = new Size(128, 15);
@@ -241,6 +281,9 @@
             // 
             // cbAccountType
             // 
+            cbAccountType.BackColor = Color.FromArgb(60, 60, 60);
+            cbAccountType.FlatStyle = FlatStyle.Flat;
+            cbAccountType.ForeColor = Color.White;
             cbAccountType.FormattingEnabled = true;
             cbAccountType.Items.AddRange(new object[] { "Administrator", "Teller" });
             cbAccountType.Location = new Point(187, 291);
@@ -251,6 +294,7 @@
             // label10
             // 
             label10.AutoSize = true;
+            label10.ForeColor = Color.White;
             label10.Location = new Point(187, 273);
             label10.Name = "label10";
             label10.Size = new Size(87, 15);
@@ -261,6 +305,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(30, 30, 30);
             ClientSize = new Size(543, 449);
             Controls.Add(label10);
             Controls.Add(cbAccountType);
@@ -287,7 +332,9 @@
             Controls.Add(label1);
             Controls.Add(tbUsername);
             Name = "FrmAccount";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmAccount";
+            TopMost = true;
             Load += FrmAccount_Load;
             ResumeLayout(false);
             PerformLayout();
