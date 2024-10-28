@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rHhZcpQOI9M=",
+  "dgSpecHash": "9cHJZddBDOY=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Skearch\\source\\repos\\Bayad Center Project\\Bayad Center Project.csproj",
+  "projectFilePath": "D:\\Coding Project\\Bayad-Center-Project\\Bayad Center Project.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Skearch\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\Skearch\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
