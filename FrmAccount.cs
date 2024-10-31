@@ -2,27 +2,16 @@
 using Bayad_Center_Project.Entities;
 using Bayad_Center_Project.Enums;
 using Bayad_Center_Project.Services;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Net;
-using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Bayad_Center_Project
 {
     public partial class FrmAccount : Form
     {
-        AccountFormRequest accountFormRequest;
+        FormRequest accountFormRequest;
         public int userID = -1;
 
-        public FrmAccount(AccountFormRequest AccountFormRequest, int UserID)
+        public FrmAccount(FormRequest AccountFormRequest, int UserID)
         {
             InitializeComponent();
             userID = UserID;
@@ -38,7 +27,7 @@ namespace Bayad_Center_Project
 
             AccountContext _ = new AccountContext();
             var accountService = new AccountService(_);
-            if (accountFormRequest.Equals(AccountFormRequest.Edit) || accountFormRequest.Equals(AccountFormRequest.View))
+            if (accountFormRequest.Equals(FormRequest.Edit) || accountFormRequest.Equals(FormRequest.View))
             {
                 User user = accountService.GetUserById(userID);
                 tbUsername.Text = user.Username;
@@ -55,10 +44,10 @@ namespace Bayad_Center_Project
 
             switch (accountFormRequest)
             {
-                case AccountFormRequest.Edit:
+                case FormRequest.Edit:
                     btnAction.Text = "Save";
                     break;
-                case AccountFormRequest.View:
+                case FormRequest.View:
                     btnAction.Text = "Close";
                     lblRequiredFields.Visible = false;
 
@@ -77,7 +66,7 @@ namespace Bayad_Center_Project
                             control.Text = control.Text.Replace(" *", "");
                     }
                     break;
-                case AccountFormRequest.Create:
+                case FormRequest.Create:
                     btnAction.Text = "Create";
                     break;
             }
@@ -92,7 +81,7 @@ namespace Bayad_Center_Project
 
                 switch (accountFormRequest)
                 {
-                    case AccountFormRequest.Edit:
+                    case FormRequest.Edit:
                         User userEdit = new User()
                         {
                             Username = string.IsNullOrEmpty(tbUsername.Text) ? null : tbUsername.Text,
@@ -109,10 +98,7 @@ namespace Bayad_Center_Project
 
                         accountService.EditAccountById(userID, userEdit);
                         break;
-                    case AccountFormRequest.View:
-                        this.Hide();
-                        break;
-                    case AccountFormRequest.Create:
+                    case FormRequest.Create:
                         User userCreate = new User()
                         {
                             Username = string.IsNullOrEmpty(tbUsername.Text) ? null : tbUsername.Text,

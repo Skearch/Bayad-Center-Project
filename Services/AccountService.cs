@@ -1,14 +1,7 @@
 ﻿using Bayad_Center_Project.DbContexts;
 using Bayad_Center_Project.Entities;
 using Bayad_Center_Project.Enums;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Data.Common;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Bayad_Center_Project.Services
 {
@@ -104,9 +97,7 @@ namespace Bayad_Center_Project.Services
             if (dataGridView.Columns.Count == 0)
             {
                 foreach (var propertyInfo in typeof(User).GetProperties())
-                {
                     dataGridView.Columns.Add(propertyInfo.Name, propertyInfo.Name);
-                }
             }
 
             foreach (var user in users)
@@ -114,9 +105,7 @@ namespace Bayad_Center_Project.Services
                 int rowIndex = dataGridView.Rows.Add();
 
                 foreach (var propertyInfo in typeof(User).GetProperties())
-                {
                     dataGridView.Rows[rowIndex].Cells[propertyInfo.Name].Value = propertyInfo.GetValue(user);
-                }
             }
         }
     }

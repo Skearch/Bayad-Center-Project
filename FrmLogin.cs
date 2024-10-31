@@ -1,9 +1,10 @@
-﻿using Bayad_Center_Project.DbContexts;
+﻿using Bayad_Center_Project.Contexts;
+using Bayad_Center_Project.DbContexts;
 using Bayad_Center_Project.Entities;
 using Bayad_Center_Project.Enums;
 using Bayad_Center_Project.Services;
-using Microsoft.EntityFrameworkCore;
 using System.Data.SQLite;
+using System.Diagnostics;
 
 namespace Bayad_Center_Project
 {
@@ -20,8 +21,10 @@ namespace Bayad_Center_Project
             if (!File.Exists(dbName)) 
                 SQLiteConnection.CreateFile(dbName);
 
-            using (var context = new AccountContext())
-                context.Database.EnsureCreated();
+            using (var databaseContext = new DatabaseContext())
+            {
+                databaseContext.Database.EnsureCreated();
+            }
 
             try
             {
@@ -65,7 +68,7 @@ namespace Bayad_Center_Project
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error"); 
+                MessageBox.Show(ex.StackTrace, "Error"); 
             }
         }
 

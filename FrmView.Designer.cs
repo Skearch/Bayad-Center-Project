@@ -38,17 +38,21 @@
             btnAccountDelete = new Button();
             dgvAccount = new DataGridView();
             tbServices = new TabPage();
-            btnServiceCreate = new Button();
-            dataGridView2 = new DataGridView();
+            flowLayoutPanel2 = new FlowLayoutPanel();
             btnServiceEdit = new Button();
+            btnServiceView = new Button();
+            btnServiceReload = new Button();
+            btnServiceCreate = new Button();
             btnServiceDelete = new Button();
+            dgvService = new DataGridView();
             tbPayBills = new TabPage();
             tcMenu.SuspendLayout();
             tbAccounts.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvAccount).BeginInit();
             tbServices.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            flowLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvService).BeginInit();
             SuspendLayout();
             // 
             // tcMenu
@@ -196,10 +200,8 @@
             // 
             // tbServices
             // 
-            tbServices.Controls.Add(btnServiceCreate);
-            tbServices.Controls.Add(dataGridView2);
-            tbServices.Controls.Add(btnServiceEdit);
-            tbServices.Controls.Add(btnServiceDelete);
+            tbServices.Controls.Add(flowLayoutPanel2);
+            tbServices.Controls.Add(dgvService);
             tbServices.Location = new Point(4, 24);
             tbServices.Name = "tbServices";
             tbServices.Padding = new Padding(3);
@@ -208,40 +210,123 @@
             tbServices.Text = "Services";
             tbServices.UseVisualStyleBackColor = true;
             // 
-            // btnServiceCreate
+            // flowLayoutPanel2
             // 
-            btnServiceCreate.Location = new Point(196, 263);
-            btnServiceCreate.Name = "btnServiceCreate";
-            btnServiceCreate.Size = new Size(89, 23);
-            btnServiceCreate.TabIndex = 10;
-            btnServiceCreate.Text = "Create";
-            btnServiceCreate.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView2
-            // 
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Location = new Point(6, 6);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.Size = new Size(506, 251);
-            dataGridView2.TabIndex = 1;
+            flowLayoutPanel2.AutoSize = true;
+            flowLayoutPanel2.BackColor = Color.FromArgb(30, 30, 30);
+            flowLayoutPanel2.Controls.Add(btnServiceEdit);
+            flowLayoutPanel2.Controls.Add(btnServiceView);
+            flowLayoutPanel2.Controls.Add(btnServiceReload);
+            flowLayoutPanel2.Controls.Add(btnServiceCreate);
+            flowLayoutPanel2.Controls.Add(btnServiceDelete);
+            flowLayoutPanel2.Dock = DockStyle.Bottom;
+            flowLayoutPanel2.Location = new Point(3, 507);
+            flowLayoutPanel2.Name = "flowLayoutPanel2";
+            flowLayoutPanel2.Size = new Size(1026, 33);
+            flowLayoutPanel2.TabIndex = 12;
             // 
             // btnServiceEdit
             // 
-            btnServiceEdit.Location = new Point(101, 263);
+            btnServiceEdit.AutoSize = true;
+            btnServiceEdit.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnServiceEdit.BackColor = Color.FromArgb(60, 60, 60);
+            btnServiceEdit.Dock = DockStyle.Fill;
+            btnServiceEdit.FlatStyle = FlatStyle.Flat;
+            btnServiceEdit.ForeColor = Color.White;
+            btnServiceEdit.Location = new Point(3, 3);
             btnServiceEdit.Name = "btnServiceEdit";
-            btnServiceEdit.Size = new Size(89, 23);
-            btnServiceEdit.TabIndex = 9;
+            btnServiceEdit.Size = new Size(39, 27);
+            btnServiceEdit.TabIndex = 6;
             btnServiceEdit.Text = "Edit";
-            btnServiceEdit.UseVisualStyleBackColor = true;
+            btnServiceEdit.UseVisualStyleBackColor = false;
+            btnServiceEdit.Click += btnServiceEdit_Click;
+            // 
+            // btnServiceView
+            // 
+            btnServiceView.AutoSize = true;
+            btnServiceView.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnServiceView.BackColor = Color.FromArgb(60, 60, 60);
+            btnServiceView.Dock = DockStyle.Fill;
+            btnServiceView.FlatStyle = FlatStyle.Flat;
+            btnServiceView.ForeColor = Color.White;
+            btnServiceView.Location = new Point(48, 3);
+            btnServiceView.Name = "btnServiceView";
+            btnServiceView.Size = new Size(44, 27);
+            btnServiceView.TabIndex = 9;
+            btnServiceView.Text = "View";
+            btnServiceView.UseVisualStyleBackColor = false;
+            btnServiceView.Click += btnServiceView_Click;
+            // 
+            // btnServiceReload
+            // 
+            btnServiceReload.AutoSize = true;
+            btnServiceReload.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnServiceReload.BackColor = Color.FromArgb(60, 60, 60);
+            btnServiceReload.Dock = DockStyle.Fill;
+            btnServiceReload.FlatStyle = FlatStyle.Flat;
+            btnServiceReload.ForeColor = Color.White;
+            btnServiceReload.Location = new Point(98, 3);
+            btnServiceReload.Name = "btnServiceReload";
+            btnServiceReload.Size = new Size(55, 27);
+            btnServiceReload.TabIndex = 8;
+            btnServiceReload.Text = "Reload";
+            btnServiceReload.UseVisualStyleBackColor = false;
+            btnServiceReload.Click += btnServiceReload_Click;
+            // 
+            // btnServiceCreate
+            // 
+            btnServiceCreate.AutoSize = true;
+            btnServiceCreate.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnServiceCreate.BackColor = Color.FromArgb(60, 60, 60);
+            btnServiceCreate.Dock = DockStyle.Fill;
+            btnServiceCreate.FlatStyle = FlatStyle.Flat;
+            btnServiceCreate.ForeColor = Color.White;
+            btnServiceCreate.Location = new Point(159, 3);
+            btnServiceCreate.Name = "btnServiceCreate";
+            btnServiceCreate.Size = new Size(53, 27);
+            btnServiceCreate.TabIndex = 7;
+            btnServiceCreate.Text = "Create";
+            btnServiceCreate.UseVisualStyleBackColor = false;
+            btnServiceCreate.Click += btnServiceCreate_Click;
             // 
             // btnServiceDelete
             // 
-            btnServiceDelete.Location = new Point(6, 263);
+            btnServiceDelete.AutoSize = true;
+            btnServiceDelete.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnServiceDelete.BackColor = Color.FromArgb(60, 60, 60);
+            btnServiceDelete.Dock = DockStyle.Fill;
+            btnServiceDelete.FlatStyle = FlatStyle.Flat;
+            btnServiceDelete.ForeColor = Color.White;
+            btnServiceDelete.Location = new Point(218, 3);
             btnServiceDelete.Name = "btnServiceDelete";
-            btnServiceDelete.Size = new Size(89, 23);
-            btnServiceDelete.TabIndex = 8;
+            btnServiceDelete.Size = new Size(52, 27);
+            btnServiceDelete.TabIndex = 5;
             btnServiceDelete.Text = "Delete";
-            btnServiceDelete.UseVisualStyleBackColor = true;
+            btnServiceDelete.UseVisualStyleBackColor = false;
+            // 
+            // dgvService
+            // 
+            dgvService.AllowUserToAddRows = false;
+            dgvService.AllowUserToDeleteRows = false;
+            dgvService.AllowUserToResizeColumns = false;
+            dgvService.AllowUserToResizeRows = false;
+            dgvService.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvService.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgvService.BackgroundColor = Color.FromArgb(60, 60, 60);
+            dgvService.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dgvService.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvService.Dock = DockStyle.Fill;
+            dgvService.Location = new Point(3, 3);
+            dgvService.MultiSelect = false;
+            dgvService.Name = "dgvService";
+            dgvService.ReadOnly = true;
+            dgvService.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvService.ShowCellErrors = false;
+            dgvService.ShowCellToolTips = false;
+            dgvService.ShowEditingIcon = false;
+            dgvService.ShowRowErrors = false;
+            dgvService.Size = new Size(1026, 537);
+            dgvService.TabIndex = 1;
             // 
             // tbPayBills
             // 
@@ -253,14 +338,14 @@
             tbPayBills.Text = "Pay Bills";
             tbPayBills.UseVisualStyleBackColor = true;
             // 
-            // FrmAdminView
+            // FrmView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(30, 30, 30);
             ClientSize = new Size(1040, 571);
             Controls.Add(tcMenu);
-            Name = "FrmAdminView";
+            Name = "FrmView";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmAdminView";
             Load += FrmAdminView_Load;
@@ -271,7 +356,10 @@
             flowLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvAccount).EndInit();
             tbServices.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            tbServices.PerformLayout();
+            flowLayoutPanel2.ResumeLayout(false);
+            flowLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvService).EndInit();
             ResumeLayout(false);
         }
 
@@ -284,13 +372,16 @@
         private Button btnAccountCreate;
         private Button btnAccountEdit;
         private Button btnAccountDelete;
-        private Button btnServiceCreate;
-        private DataGridView dataGridView2;
-        private Button btnServiceEdit;
-        private Button btnServiceDelete;
         private TabPage tbPayBills;
         private Button btnAccountReload;
         private Button btnAccountView;
         private FlowLayoutPanel flowLayoutPanel1;
+        private FlowLayoutPanel flowLayoutPanel2;
+        private Button btnServiceEdit;
+        private Button btnServiceView;
+        private Button btnServiceReload;
+        private Button btnServiceCreate;
+        private Button btnServiceDelete;
+        private DataGridView dgvService;
     }
 }

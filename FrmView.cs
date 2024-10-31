@@ -1,8 +1,6 @@
 ﻿using Bayad_Center_Project.DbContexts;
 using Bayad_Center_Project.Enums;
 using Bayad_Center_Project.Services;
-using System.Data;
-using System.Windows.Forms;
 
 namespace Bayad_Center_Project
 {
@@ -13,13 +11,17 @@ namespace Bayad_Center_Project
             InitializeComponent();
         }
 
-        private void UpdateDGVAccount() 
+        private void UpdateTables()
         {
             try
             {
-                var _ = new AccountContext();
-                var accountService = new AccountService(_);
+                var accountContext = new AccountContext();
+                var accountService = new AccountService(accountContext);
                 accountService.PopulateUserTable(dgvAccount);
+
+                var serviceContext = new ServiceContext();
+                var serviceService = new ServiceService(serviceContext);
+                serviceService.PopulateTable(dgvService);
             }
             catch (Exception ex)
             {
@@ -27,7 +29,7 @@ namespace Bayad_Center_Project
             }
         }
 
-        private int SelectedUserId() 
+        private int SelectedUserId()
         {
             if (dgvAccount.SelectedRows.Count < 0)
                 throw new Exception("Please select an account to edit.");
@@ -36,29 +38,32 @@ namespace Bayad_Center_Project
             return Convert.ToInt32(selectedRow.Cells[0].Value);
         }
 
-        private void FrmAdminView_Load(object sender, EventArgs e)
+        private int SelectedServiceId()
         {
-            UpdateDGVAccount();
+            if (dgvService.SelectedRows.Count < 0)
+                throw new Exception("Please select a service to edit.");
+
+            DataGridViewRow selectedRow = dgvService.SelectedRows[0];
+            return Convert.ToInt32(selectedRow.Cells[0].Value);
         }
 
-        private void btnAccountReload_Click(object sender, EventArgs e)
-        {
-            UpdateDGVAccount();
-        }
+        private void FrmAdminView_Load(object sender, EventArgs e) => UpdateTables();
+
+        private void btnAccountReload_Click(object sender, EventArgs e) => UpdateTables();
 
         private void btnAccountCreate_Click(object sender, EventArgs e)
         {
-            FrmAccount frmAccount = new FrmAccount(AccountFormRequest.Create, -1);
+            FrmAccount frmAccount = new FrmAccount(FormRequest.Create, -1);
             frmAccount.Show();
 
-            UpdateDGVAccount();
+            UpdateTables();
         }
 
         private void btnAccountEdit_Click(object sender, EventArgs e)
         {
             try
             {
-                FrmAccount frmAccount = new FrmAccount(AccountFormRequest.Edit, SelectedUserId());
+                FrmAccount frmAccount = new FrmAccount(FormRequest.Edit, SelectedUserId());
                 frmAccount.Show();
             }
             catch (Exception ex)
@@ -66,14 +71,14 @@ namespace Bayad_Center_Project
                 MessageBox.Show(ex.Message, "Error");
             }
 
-            UpdateDGVAccount();
+            UpdateTables();
         }
 
         private void btnAccountView_Click(object sender, EventArgs e)
         {
             try
             {
-                FrmAccount frmAccount = new FrmAccount(AccountFormRequest.View, SelectedUserId());
+                FrmAccount frmAccount = new FrmAccount(FormRequest.View, SelectedUserId());
                 frmAccount.Show();
             }
             catch (Exception ex)
@@ -81,7 +86,7 @@ namespace Bayad_Center_Project
                 MessageBox.Show(ex.Message, "Error");
             }
 
-            UpdateDGVAccount();
+            UpdateTables();
         }
 
         private void btnAccountDelete_Click(object sender, EventArgs e)
@@ -94,7 +99,7 @@ namespace Bayad_Center_Project
                 {
                     var accountService = new AccountService(new AccountContext());
                     accountService.DeleteAccountById(SelectedUserId());
-                    UpdateDGVAccount();
+                    UpdateTables();
                 }
                 catch (Exception ex)
                 {
@@ -102,5 +107,33 @@ namespace Bayad_Center_Project
                 }
             }
         }
+
+        private void btnServiceCreate_Click(object sender, EventArgs e)
+        {
+            FrmService frmService = new FrmService(FormRequest.Create, 0);
+            frmService.Show();
+        }
+
+        private void btnServiceView_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FrmService frmService = new FrmService(FormRequest.View, SelectedServiceId());
+                frmService.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+
+            UpdateTables();
+        }
+
+        private void btnServiceEdit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnServiceReload_Click(object sender, EventArgs e) => UpdateTables();
     }
 }
