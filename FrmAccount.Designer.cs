@@ -332,7 +332,7 @@
             Controls.Add(label1);
             Controls.Add(tbUsername);
             Name = "FrmAccount";
-            StartPosition = FormStartPosition.CenterParent;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmAccount";
             TopMost = true;
             Load += FrmAccount_Load;

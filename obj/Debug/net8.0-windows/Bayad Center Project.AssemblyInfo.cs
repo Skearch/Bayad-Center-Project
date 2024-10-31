@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Bayad Center Project")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d46bcdd9dbd7b74b503aaf49c0676ec3b2248dec")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8207b6a9c839c186d36584afec02d3f68c5b01b8")]
 [assembly: System.Reflection.AssemblyProductAttribute("Bayad Center Project")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Bayad Center Project")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

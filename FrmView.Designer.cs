@@ -303,6 +303,7 @@
             btnServiceDelete.TabIndex = 5;
             btnServiceDelete.Text = "Delete";
             btnServiceDelete.UseVisualStyleBackColor = false;
+            btnServiceDelete.Click += btnServiceDelete_Click;
             // 
             // dgvService
             // 

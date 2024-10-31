@@ -186,7 +186,7 @@
             Controls.Add(pbIcon);
             Controls.Add(btnSetImage);
             Name = "FrmService";
-            StartPosition = FormStartPosition.CenterParent;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmService";
             Load += FrmService_Load;
             ((System.ComponentModel.ISupportInitialize)pbIcon).EndInit();

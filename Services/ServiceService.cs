@@ -13,6 +13,46 @@ namespace Bayad_Center_Project.Services
             _dbContext = dbContext;
         }
 
+        public bool DeleteServiceById(int serviceID)
+        {
+            var service = _dbContext.Services.FirstOrDefault(u => u.Id == serviceID);
+            if (service == null)
+                throw new Exception($"Service with ID: {serviceID} does not exist.");
+
+            _dbContext.Services.Remove(service);
+            _dbContext.SaveChanges();
+
+            return true;
+        }
+
+        public bool EditServiceById(int serviceID, Service service)
+        {
+            var u = _dbContext.Services.FirstOrDefault(u => u.Id == serviceID);
+            if (u == null)
+                throw new Exception($"Service with the id: {serviceID} does not exist.");
+
+            var invalidFields = service.GetType().GetProperties()
+            .Where(p => p.PropertyType == typeof(string))
+            .Where(p => p.GetValue(service) is string value && value.Length > p.GetCustomAttributes(typeof(MaxLengthAttribute), false)
+            .Cast<MaxLengthAttribute>()
+            .FirstOrDefault()?.Length)
+            .Select(p => p.Name);
+
+            if (invalidFields.Any())
+                throw new ValidationException($"The following fields are too long: {string.Join(", ", invalidFields)}");
+
+            if (service.Icon == null)
+                throw new ValidationException($"Set an icon first before creating.");
+
+            u.Name = service.Name;
+            u.Description = service.Description;
+            u.Icon = service.Icon;
+
+            _dbContext.SaveChanges();
+
+            return true;
+        }
+
         public bool RegisterService(Service service)
         {
             if (_dbContext.Services.Any(u => u.Name == service.Name))
@@ -26,9 +66,10 @@ namespace Bayad_Center_Project.Services
             .Select(p => p.Name);
 
             if (invalidFields.Any())
-            {
                 throw new ValidationException($"The following fields are too long: {string.Join(", ", invalidFields)}");
-            }
+
+            if (service.Icon == null)
+                throw new ValidationException($"Set an icon first before creating.");
 
             _dbContext.Services.Add(service);
             _dbContext.SaveChanges();

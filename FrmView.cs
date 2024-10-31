@@ -53,8 +53,15 @@ namespace Bayad_Center_Project
 
         private void btnAccountCreate_Click(object sender, EventArgs e)
         {
-            FrmAccount frmAccount = new FrmAccount(FormRequest.Create, -1);
-            frmAccount.Show();
+            try
+            {
+                FrmAccount frmAccount = new FrmAccount(FormRequest.Create, -1);
+                frmAccount.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
 
             UpdateTables();
         }
@@ -99,19 +106,29 @@ namespace Bayad_Center_Project
                 {
                     var accountService = new AccountService(new AccountContext());
                     accountService.DeleteAccountById(SelectedUserId());
-                    UpdateTables();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Error");
                 }
             }
+
+            UpdateTables();
         }
 
         private void btnServiceCreate_Click(object sender, EventArgs e)
         {
-            FrmService frmService = new FrmService(FormRequest.Create, 0);
-            frmService.Show();
+            try
+            {
+                FrmService frmService = new FrmService(FormRequest.Create, -1);
+                frmService.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+
+            UpdateTables();
         }
 
         private void btnServiceView_Click(object sender, EventArgs e)
@@ -131,9 +148,39 @@ namespace Bayad_Center_Project
 
         private void btnServiceEdit_Click(object sender, EventArgs e)
         {
+            try
+            {
+                FrmService frmService = new FrmService(FormRequest.Edit, SelectedServiceId());
+                frmService.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
 
+            UpdateTables();
         }
 
         private void btnServiceReload_Click(object sender, EventArgs e) => UpdateTables();
+
+        private void btnServiceDelete_Click(object sender, EventArgs e)
+        {
+            var confirmation = MessageBox.Show("Are you sure you want to delete this service?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (confirmation == DialogResult.Yes)
+            {
+                try
+                {
+                    var ServiceContext = new ServiceService(new ServiceContext());
+                    ServiceContext.DeleteServiceById(SelectedServiceId());
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error");
+                }
+            }
+
+            UpdateTables();
+        }
     }
 }

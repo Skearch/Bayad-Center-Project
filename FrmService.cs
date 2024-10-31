@@ -3,21 +3,50 @@ using Bayad_Center_Project.Entities;
 using Bayad_Center_Project.Enums;
 using Bayad_Center_Project.Services;
 using Microsoft.Data.Sqlite;
+using System.Diagnostics.CodeAnalysis;
+using System.Drawing.Imaging;
 
 namespace Bayad_Center_Project
 {
     public partial class FrmService : Form
     {
         FormRequest serviceFormRequest;
-        public int userID = -1;
+        public int serviceID = -1;
 
         string imageFile = "";
 
         public FrmService(FormRequest ServiceFormRequest, int ServiceID)
         {
             InitializeComponent();
-            userID = ServiceID;
+            serviceID = ServiceID;
             serviceFormRequest = ServiceFormRequest;
+        }
+
+        private byte[] ImageDirectoryToByte(string fileName)
+        {
+            byte[] iconData = null;
+            if (!string.IsNullOrEmpty(fileName))
+            {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    Image.FromFile(fileName).Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                    iconData = ms.ToArray();
+                }
+            }
+
+            return iconData;
+        }
+
+        private byte[] ImageToByteArray(Image image)
+        {
+            if (image == null)
+                return null;
+
+            using (MemoryStream ms = new MemoryStream())
+            {
+                image.Save(ms, ImageFormat.Png);
+                return ms.ToArray();
+            }
         }
 
         private void FrmService_Load(object sender, EventArgs e)
@@ -27,7 +56,7 @@ namespace Bayad_Center_Project
 
             if (serviceFormRequest.Equals(FormRequest.Edit) || serviceFormRequest.Equals(FormRequest.View))
             {
-                Service service = serviceService.GetServiceById(userID);
+                Service service = serviceService.GetServiceById(serviceID);
                 tbName.Text = service.Name;
                 rtbDescription.Text = service.Description;
 
@@ -44,6 +73,7 @@ namespace Bayad_Center_Project
             {
                 case FormRequest.Edit:
                     btnAction.Text = "Save";
+                    btnSetImage.Text = "Change";
                     break;
                 case FormRequest.View:
                     btnAction.Text = "Close";
@@ -72,19 +102,23 @@ namespace Bayad_Center_Project
 
         private void btnSetImage_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            try
             {
-                openFileDialog.Title = "Select an Image File";
-                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
-                openFileDialog.FilterIndex = 1;
-                openFileDialog.RestoreDirectory = true;
+                using (OpenFileDialog openFileDialog = new OpenFileDialog())
+                {
+                    openFileDialog.Title = "Select an Image File";
+                    openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
+                    openFileDialog.FilterIndex = 1;
+                    openFileDialog.RestoreDirectory = true;
 
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                    imageFile = openFileDialog.FileName;
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                        imageFile = openFileDialog.FileName;
 
-                pbIcon.Image = Image.FromFile(imageFile);
-                pbIcon.SizeMode = PictureBoxSizeMode.Zoom;
+                    pbIcon.Image = Image.FromFile(imageFile);
+                    pbIcon.SizeMode = PictureBoxSizeMode.Zoom;
+                }
             }
+            catch { }
         }
 
         private void btnClearImage_Click(object sender, EventArgs e)
@@ -108,24 +142,21 @@ namespace Bayad_Center_Project
                 switch (serviceFormRequest)
                 {
                     case FormRequest.Edit:
+                        Service serviceEdit = new Service()
+                        {
+                            Name = string.IsNullOrEmpty(tbName.Text) ? null : tbName.Text,
+                            Description = string.IsNullOrEmpty(rtbDescription.Text) ? null : rtbDescription.Text,
+                            Icon = ImageToByteArray(pbIcon.Image)
+                        };
 
+                        serviceService.EditServiceById(serviceID, serviceEdit);
                         break;
                     case FormRequest.Create:
-                        byte[] iconData = null;
-                        if (!string.IsNullOrEmpty(imageFile))
-                        {
-                            using (MemoryStream ms = new MemoryStream())
-                            {
-                                Image.FromFile(imageFile).Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-                                iconData = ms.ToArray();
-                            }
-                        }
-
                         Service serviceCreate = new Service()
                         {
                             Name = string.IsNullOrEmpty(tbName.Text) ? null : tbName.Text,
                             Description = string.IsNullOrEmpty(rtbDescription.Text) ? null : rtbDescription.Text,
-                            Icon = iconData
+                            Icon = ImageDirectoryToByte(imageFile)
                         };
 
                         serviceService.RegisterService(serviceCreate);

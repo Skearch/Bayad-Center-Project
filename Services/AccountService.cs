@@ -36,9 +36,7 @@ namespace Bayad_Center_Project.Services
             .Select(p => p.Name);
 
             if (invalidFields.Any())
-            {
                 throw new ValidationException($"The following fields are too long: {string.Join(", ", invalidFields)}");
-            }
 
             _dbContext.Users.Add(user);
             _dbContext.SaveChanges();
@@ -50,6 +48,16 @@ namespace Bayad_Center_Project.Services
             var u = _dbContext.Users.FirstOrDefault(u => u.Id == userID);
             if (u == null)
                 throw new Exception($"Account with the id: {userID} does not exist.");
+
+            var invalidFields = user.GetType().GetProperties()
+            .Where(p => p.PropertyType == typeof(string))
+            .Where(p => p.GetValue(user) is string value && value.Length > p.GetCustomAttributes(typeof(MaxLengthAttribute), false)
+            .Cast<MaxLengthAttribute>()
+            .FirstOrDefault()?.Length)
+            .Select(p => p.Name);
+
+            if (invalidFields.Any())
+                throw new ValidationException($"The following fields are too long: {string.Join(", ", invalidFields)}");
 
             u.Username = user.Username;
             u.Password = user.Password;
