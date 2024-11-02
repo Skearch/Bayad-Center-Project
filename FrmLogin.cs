@@ -4,7 +4,7 @@ using Bayad_Center_Project.Entities;
 using Bayad_Center_Project.Enums;
 using Bayad_Center_Project.Services;
 using System.Data.SQLite;
-using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace Bayad_Center_Project
 {
@@ -13,18 +13,20 @@ namespace Bayad_Center_Project
         public FrmLogin()
         {
             InitializeComponent();
+            Region = Region.FromHrgn(CreateRoundRectRgn.Apply(0, 0, Width, Height, 15, 15));
         }
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
+            new DraggableForm(pbIcon, this);
+            new DraggableForm(this, this);
+
             string dbName = "bayadcenter.db";
-            if (!File.Exists(dbName)) 
+            if (!File.Exists(dbName))
                 SQLiteConnection.CreateFile(dbName);
 
             using (var databaseContext = new DatabaseContext())
-            {
                 databaseContext.Database.EnsureCreated();
-            }
 
             try
             {
@@ -45,51 +47,11 @@ namespace Bayad_Center_Project
                 accountService.RegisterAccount(user);
             }
             catch
-            {}
+            { }
 
             tbUsername.Text = Properties.Settings.Default.Username;
             tbPassword.Text = Properties.Settings.Default.Password;
             cbRememberLogin.Checked = Properties.Settings.Default.Remember;
-        }
-
-        private void btnAdmin_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                AccountContext _ = new AccountContext();
-                var accountService = new AccountService(_);
-                accountService.ValidateLogin(tbUsername.Text, tbPassword.Text, AccountType.Admin);
-
-                FrmView frmAdminView = new FrmView();
-                frmAdminView.Show();
-                this.Hide();
-
-                Settings();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.StackTrace, "Error"); 
-            }
-        }
-
-        private void btnTeller_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                AccountContext _ = new AccountContext();
-                var accountService = new AccountService(_);
-                accountService.ValidateLogin(tbUsername.Text, tbPassword.Text, AccountType.Teller);
-
-                FrmView frmAdminView = new FrmView();
-                frmAdminView.Show();
-                this.Hide();
-
-                Settings();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Failed trying to login: " + ex.Message, "Error");
-            }
         }
 
         private void Settings()
@@ -109,5 +71,49 @@ namespace Bayad_Center_Project
                 Properties.Settings.Default.Save();
             }
         }
+
+        private void btnTeller_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AccountContext _ = new AccountContext();
+                var accountService = new AccountService(_);
+                accountService.ValidateLogin(tbUsername.Text, tbPassword.Text, AccountType.Teller);
+
+                FrmView frmAdminView = new FrmView();
+                frmAdminView.Show();
+                this.Hide();
+
+                Settings();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+        }
+
+        private void btnAdmin_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AccountContext _ = new AccountContext();
+                var accountService = new AccountService(_);
+                accountService.ValidateLogin(tbUsername.Text, tbPassword.Text, AccountType.Admin);
+
+                FrmView frmAdminView = new FrmView();
+                frmAdminView.Show();
+                this.Hide();
+
+                Settings();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+        }
+
+        private void btnExit_Click(object sender, EventArgs e) => Environment.Exit(0);
+
+        private void btnMinimize_Click(object sender, EventArgs e) => this.WindowState = FormWindowState.Minimized;
     }
 }

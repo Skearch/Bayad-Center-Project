@@ -28,122 +28,176 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
             tbUsername = new TextBox();
             tbPassword = new TextBox();
-            label1 = new Label();
-            label2 = new Label();
-            btnAdmin = new Button();
-            btnTeller = new Button();
-            label3 = new Label();
             cbRememberLogin = new CheckBox();
+            pbIcon = new PictureBox();
+            pictureBox2 = new PictureBox();
+            pictureBox3 = new PictureBox();
+            btnTeller = new PictureBox();
+            pictureBox6 = new PictureBox();
+            btnAdmin = new PictureBox();
+            btnExit = new PictureBox();
+            btnMinimize = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pbIcon).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnTeller).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnAdmin).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnExit).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnMinimize).BeginInit();
             SuspendLayout();
             // 
             // tbUsername
             // 
-            tbUsername.BackColor = Color.FromArgb(60, 60, 60);
+            tbUsername.BackColor = Color.White;
             tbUsername.BorderStyle = BorderStyle.None;
-            tbUsername.ForeColor = Color.White;
-            tbUsername.Location = new Point(96, 70);
+            tbUsername.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            tbUsername.ForeColor = Color.Black;
+            tbUsername.Location = new Point(142, 162);
             tbUsername.Name = "tbUsername";
-            tbUsername.Size = new Size(184, 16);
+            tbUsername.Size = new Size(228, 32);
             tbUsername.TabIndex = 0;
             // 
             // tbPassword
             // 
-            tbPassword.BackColor = Color.FromArgb(60, 60, 60);
+            tbPassword.BackColor = Color.White;
             tbPassword.BorderStyle = BorderStyle.None;
-            tbPassword.ForeColor = Color.White;
-            tbPassword.Location = new Point(96, 114);
+            tbPassword.Font = new Font("Segoe UI", 18F);
+            tbPassword.ForeColor = Color.Black;
+            tbPassword.Location = new Point(142, 239);
             tbPassword.Name = "tbPassword";
             tbPassword.PasswordChar = '*';
-            tbPassword.Size = new Size(184, 16);
+            tbPassword.Size = new Size(228, 32);
             tbPassword.TabIndex = 1;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(96, 52);
-            label1.Name = "label1";
-            label1.Size = new Size(63, 15);
-            label1.TabIndex = 2;
-            label1.Text = "Username:";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(96, 96);
-            label2.Name = "label2";
-            label2.Size = new Size(60, 15);
-            label2.TabIndex = 3;
-            label2.Text = "Password:";
-            // 
-            // btnAdmin
-            // 
-            btnAdmin.BackColor = Color.FromArgb(60, 60, 60);
-            btnAdmin.FlatStyle = FlatStyle.Flat;
-            btnAdmin.ForeColor = Color.White;
-            btnAdmin.Location = new Point(96, 186);
-            btnAdmin.Name = "btnAdmin";
-            btnAdmin.Size = new Size(89, 23);
-            btnAdmin.TabIndex = 4;
-            btnAdmin.Text = "Admin";
-            btnAdmin.UseVisualStyleBackColor = false;
-            btnAdmin.Click += btnAdmin_Click;
-            // 
-            // btnTeller
-            // 
-            btnTeller.BackColor = Color.FromArgb(60, 60, 60);
-            btnTeller.FlatStyle = FlatStyle.Flat;
-            btnTeller.ForeColor = Color.White;
-            btnTeller.Location = new Point(191, 186);
-            btnTeller.Name = "btnTeller";
-            btnTeller.Size = new Size(89, 23);
-            btnTeller.TabIndex = 5;
-            btnTeller.Text = "Teller";
-            btnTeller.UseVisualStyleBackColor = false;
-            btnTeller.Click += btnTeller_Click;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.ForeColor = Color.White;
-            label3.Location = new Point(96, 168);
-            label3.Name = "label3";
-            label3.Size = new Size(54, 15);
-            label3.TabIndex = 6;
-            label3.Text = "Login as:";
             // 
             // cbRememberLogin
             // 
             cbRememberLogin.AutoSize = true;
+            cbRememberLogin.BackColor = Color.FromArgb(230, 239, 245);
             cbRememberLogin.ForeColor = Color.White;
-            cbRememberLogin.Location = new Point(96, 143);
+            cbRememberLogin.Location = new Point(196, 286);
             cbRememberLogin.Name = "cbRememberLogin";
-            cbRememberLogin.Size = new Size(84, 19);
+            cbRememberLogin.Size = new Size(15, 14);
             cbRememberLogin.TabIndex = 7;
-            cbRememberLogin.Text = "Remember";
-            cbRememberLogin.UseVisualStyleBackColor = true;
+            cbRememberLogin.UseVisualStyleBackColor = false;
+            // 
+            // pbIcon
+            // 
+            pbIcon.Image = (Image)resources.GetObject("pbIcon.Image");
+            pbIcon.Location = new Point(10, 10);
+            pbIcon.Name = "pbIcon";
+            pbIcon.Size = new Size(171, 32);
+            pbIcon.SizeMode = PictureBoxSizeMode.AutoSize;
+            pbIcon.TabIndex = 8;
+            pbIcon.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(128, 135);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(256, 63);
+            pictureBox2.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox2.TabIndex = 9;
+            pictureBox2.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
+            pictureBox3.Location = new Point(128, 212);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(256, 63);
+            pictureBox3.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox3.TabIndex = 10;
+            pictureBox3.TabStop = false;
+            // 
+            // btnTeller
+            // 
+            btnTeller.Image = (Image)resources.GetObject("btnTeller.Image");
+            btnTeller.Location = new Point(264, 318);
+            btnTeller.Name = "btnTeller";
+            btnTeller.Size = new Size(120, 40);
+            btnTeller.SizeMode = PictureBoxSizeMode.AutoSize;
+            btnTeller.TabIndex = 12;
+            btnTeller.TabStop = false;
+            btnTeller.Click += btnTeller_Click;
+            // 
+            // pictureBox6
+            // 
+            pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
+            pictureBox6.Location = new Point(217, 289);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(62, 11);
+            pictureBox6.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox6.TabIndex = 13;
+            pictureBox6.TabStop = false;
+            // 
+            // btnAdmin
+            // 
+            btnAdmin.Image = (Image)resources.GetObject("btnAdmin.Image");
+            btnAdmin.Location = new Point(128, 318);
+            btnAdmin.Name = "btnAdmin";
+            btnAdmin.Size = new Size(120, 40);
+            btnAdmin.SizeMode = PictureBoxSizeMode.AutoSize;
+            btnAdmin.TabIndex = 14;
+            btnAdmin.TabStop = false;
+            btnAdmin.Click += btnAdmin_Click;
+            // 
+            // btnExit
+            // 
+            btnExit.Image = (Image)resources.GetObject("btnExit.Image");
+            btnExit.Location = new Point(477, 17);
+            btnExit.Name = "btnExit";
+            btnExit.Size = new Size(18, 18);
+            btnExit.SizeMode = PictureBoxSizeMode.AutoSize;
+            btnExit.TabIndex = 15;
+            btnExit.TabStop = false;
+            btnExit.Click += btnExit_Click;
+            // 
+            // btnMinimize
+            // 
+            btnMinimize.Image = (Image)resources.GetObject("btnMinimize.Image");
+            btnMinimize.Location = new Point(453, 17);
+            btnMinimize.Name = "btnMinimize";
+            btnMinimize.Size = new Size(18, 18);
+            btnMinimize.SizeMode = PictureBoxSizeMode.AutoSize;
+            btnMinimize.TabIndex = 16;
+            btnMinimize.TabStop = false;
+            btnMinimize.Click += btnMinimize_Click;
             // 
             // FrmLogin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(30, 30, 30);
-            ClientSize = new Size(382, 266);
-            Controls.Add(cbRememberLogin);
-            Controls.Add(label3);
-            Controls.Add(btnTeller);
-            Controls.Add(btnAdmin);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            BackColor = Color.FromArgb(230, 239, 245);
+            ClientSize = new Size(512, 468);
+            Controls.Add(btnMinimize);
+            Controls.Add(btnExit);
             Controls.Add(tbPassword);
+            Controls.Add(btnAdmin);
+            Controls.Add(pictureBox6);
+            Controls.Add(btnTeller);
+            Controls.Add(pictureBox3);
+            Controls.Add(pbIcon);
+            Controls.Add(cbRememberLogin);
             Controls.Add(tbUsername);
+            Controls.Add(pictureBox2);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "FrmLogin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmLogin";
             Load += FrmLogin_Load;
+            ((System.ComponentModel.ISupportInitialize)pbIcon).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnTeller).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnAdmin).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnExit).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnMinimize).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -152,11 +206,14 @@
 
         private TextBox tbUsername;
         private TextBox tbPassword;
-        private Label label1;
-        private Label label2;
-        private Button btnAdmin;
-        private Button btnTeller;
-        private Label label3;
         private CheckBox cbRememberLogin;
+        private PictureBox pbIcon;
+        private PictureBox pictureBox2;
+        private PictureBox pictureBox3;
+        private PictureBox btnTeller;
+        private PictureBox pictureBox6;
+        private PictureBox btnAdmin;
+        private PictureBox btnExit;
+        private PictureBox btnMinimize;
     }
 }

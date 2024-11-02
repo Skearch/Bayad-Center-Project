@@ -1,5 +1,6 @@
 ﻿using Bayad_Center_Project.DbContexts;
 using Bayad_Center_Project.Enums;
+using Bayad_Center_Project.Properties;
 using Bayad_Center_Project.Services;
 
 namespace Bayad_Center_Project
@@ -9,6 +10,7 @@ namespace Bayad_Center_Project
         public FrmView()
         {
             InitializeComponent();
+            Region = Region.FromHrgn(CreateRoundRectRgn.Apply(0, 0, Width, Height, 15, 15));
         }
 
         private void UpdateTables()
@@ -21,6 +23,8 @@ namespace Bayad_Center_Project
 
                 var serviceContext = new ServiceContext();
                 var serviceService = new ServiceService(serviceContext);
+                serviceService.PopulateTable(dgvService);
+
                 serviceService.PopulateTable(dgvService);
             }
             catch (Exception ex)
@@ -47,40 +51,13 @@ namespace Bayad_Center_Project
             return Convert.ToInt32(selectedRow.Cells[0].Value);
         }
 
-        private void FrmAdminView_Load(object sender, EventArgs e) => UpdateTables();
-
-        private void btnAccountReload_Click(object sender, EventArgs e) => UpdateTables();
-
-        private void btnAccountCreate_Click(object sender, EventArgs e)
+        private void FrmAdminView_Load(object sender, EventArgs e) 
         {
-            try
-            {
-                FrmAccount frmAccount = new FrmAccount(FormRequest.Create, -1);
-                frmAccount.Show();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error");
-            }
-
+            new DraggableForm(pbIcon, this);
+            new DraggableForm(pnlTop, this);
             UpdateTables();
         }
-
-        private void btnAccountEdit_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                FrmAccount frmAccount = new FrmAccount(FormRequest.Edit, SelectedUserId());
-                frmAccount.Show();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error");
-            }
-
-            UpdateTables();
-        }
-
+        
         private void btnAccountView_Click(object sender, EventArgs e)
         {
             try
@@ -182,5 +159,54 @@ namespace Bayad_Center_Project
 
             UpdateTables();
         }
+
+        private void tcMenu_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateTables();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e) => Environment.Exit(0);
+
+        private void btnMinimize_Click(object sender, EventArgs e) => this.WindowState = FormWindowState.Minimized;
+
+        private void btnAccountEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FrmAccount frmAccount = new FrmAccount(FormRequest.Edit, SelectedUserId());
+                frmAccount.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+
+            UpdateTables();
+        }
+
+        private void btnAccountReload_Click(object sender, EventArgs e) => UpdateTables();
+
+        private void btnAccountCreate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FrmAccount frmAccount = new FrmAccount(FormRequest.Create, -1);
+                frmAccount.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+
+            UpdateTables();
+        }
+
+        private void btnAccounts_MouseEnter(object sender, EventArgs e) => btnAccounts.Image = Resources.accounts_2;
+
+        private void btnServices_MouseEnter(object sender, EventArgs e) => btnServices.Image = Resources.services_2;
+
+        private void btnAccounts_MouseLeave(object sender, EventArgs e) => btnAccounts.Image = Resources.accounts;
+
+        private void btnServices_MouseLeave(object sender, EventArgs e) => btnServices.Image = Resources.services;
     }
 }
