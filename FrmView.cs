@@ -2,6 +2,7 @@
 using Bayad_Center_Project.Enums;
 using Bayad_Center_Project.Properties;
 using Bayad_Center_Project.Services;
+using System.Windows.Forms;
 
 namespace Bayad_Center_Project
 {
@@ -51,13 +52,17 @@ namespace Bayad_Center_Project
             return Convert.ToInt32(selectedRow.Cells[0].Value);
         }
 
-        private void FrmAdminView_Load(object sender, EventArgs e) 
+        private void FrmAdminView_Load(object sender, EventArgs e)
         {
             new DraggableForm(pbIcon, this);
             new DraggableForm(pnlTop, this);
             UpdateTables();
+
+            tcMenu.ItemSize = new Size(0, 1);
+            tcMenu.SizeMode = TabSizeMode.Fixed;
+            new TabPadding(tcMenu);
         }
-        
+
         private void btnAccountView_Click(object sender, EventArgs e)
         {
             try
@@ -208,5 +213,15 @@ namespace Bayad_Center_Project
         private void btnAccounts_MouseLeave(object sender, EventArgs e) => btnAccounts.Image = Resources.accounts;
 
         private void btnServices_MouseLeave(object sender, EventArgs e) => btnServices.Image = Resources.services;
+
+        private void btnAccounts_Click(object sender, EventArgs e) => tcMenu.SelectTab(0);
+
+        private void btnServices_Click(object sender, EventArgs e) => tcMenu.SelectTab(1);
+
+        private void btnTransactions_MouseEnter(object sender, EventArgs e) => btnTransactions.Image = Resources.transactions_2;
+
+        private void btnTransactions_MouseLeave(object sender, EventArgs e) => btnTransactions.Image = Resources.transactions;
+
+        private void btnTransactions_Click(object sender, EventArgs e) => tcMenu.SelectTab(2);
     }
 }

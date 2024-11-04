@@ -44,7 +44,13 @@
             btnServiceReload = new PictureBox();
             btnServiceView = new PictureBox();
             btnServiceEdit = new PictureBox();
-            tbPayBills = new TabPage();
+            tpTransactions = new TabPage();
+            dataGridView1 = new DataGridView();
+            btnTransactionDelete = new PictureBox();
+            btnTransactionCreate = new PictureBox();
+            btnTransactionReload = new PictureBox();
+            btnTransactionView = new PictureBox();
+            btnTransactionEdit = new PictureBox();
             pnlTop = new Panel();
             btnMinimize = new PictureBox();
             btnExit = new PictureBox();
@@ -52,6 +58,7 @@
             flpLeft = new FlowLayoutPanel();
             btnAccounts = new PictureBox();
             btnServices = new PictureBox();
+            btnTransactions = new PictureBox();
             tcMenu.SuspendLayout();
             tbAccounts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnAccountDelete).BeginInit();
@@ -67,6 +74,13 @@
             ((System.ComponentModel.ISupportInitialize)btnServiceReload).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnServiceView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnServiceEdit).BeginInit();
+            tpTransactions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnTransactionDelete).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnTransactionCreate).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnTransactionReload).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnTransactionView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnTransactionEdit).BeginInit();
             pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnMinimize).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnExit).BeginInit();
@@ -74,13 +88,14 @@
             flpLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)btnAccounts).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnServices).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)btnTransactions).BeginInit();
             SuspendLayout();
             // 
             // tcMenu
             // 
             tcMenu.Controls.Add(tbAccounts);
             tcMenu.Controls.Add(tbServices);
-            tcMenu.Controls.Add(tbPayBills);
+            tcMenu.Controls.Add(tpTransactions);
             tcMenu.Dock = DockStyle.Fill;
             tcMenu.Location = new Point(181, 51);
             tcMenu.Margin = new Padding(0);
@@ -100,6 +115,7 @@
             tbAccounts.Controls.Add(btnAccountView);
             tbAccounts.Controls.Add(btnAccountEdit);
             tbAccounts.Controls.Add(dgvAccount);
+            tbAccounts.ForeColor = Color.Transparent;
             tbAccounts.Location = new Point(4, 24);
             tbAccounts.Margin = new Padding(0);
             tbAccounts.Name = "tbAccounts";
@@ -291,15 +307,100 @@
             btnServiceEdit.TabStop = false;
             btnServiceEdit.Click += btnServiceEdit_Click;
             // 
-            // tbPayBills
+            // tpTransactions
             // 
-            tbPayBills.Location = new Point(4, 24);
-            tbPayBills.Name = "tbPayBills";
-            tbPayBills.Padding = new Padding(3);
-            tbPayBills.Size = new Size(700, 500);
-            tbPayBills.TabIndex = 2;
-            tbPayBills.Text = "Pay Bills";
-            tbPayBills.UseVisualStyleBackColor = true;
+            tpTransactions.BackColor = Color.FromArgb(230, 239, 245);
+            tpTransactions.Controls.Add(dataGridView1);
+            tpTransactions.Controls.Add(btnTransactionDelete);
+            tpTransactions.Controls.Add(btnTransactionCreate);
+            tpTransactions.Controls.Add(btnTransactionReload);
+            tpTransactions.Controls.Add(btnTransactionView);
+            tpTransactions.Controls.Add(btnTransactionEdit);
+            tpTransactions.Location = new Point(4, 24);
+            tpTransactions.Name = "tpTransactions";
+            tpTransactions.Padding = new Padding(3);
+            tpTransactions.Size = new Size(700, 500);
+            tpTransactions.TabIndex = 2;
+            tpTransactions.Text = "Transactions";
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.AllowUserToResizeColumns = false;
+            dataGridView1.AllowUserToResizeRows = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridView1.BackgroundColor = Color.FromArgb(230, 239, 245);
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.GridColor = Color.FromArgb(230, 239, 245);
+            dataGridView1.Location = new Point(3, 3);
+            dataGridView1.MultiSelect = false;
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.ShowCellErrors = false;
+            dataGridView1.ShowCellToolTips = false;
+            dataGridView1.ShowEditingIcon = false;
+            dataGridView1.ShowRowErrors = false;
+            dataGridView1.Size = new Size(694, 451);
+            dataGridView1.TabIndex = 28;
+            // 
+            // btnTransactionDelete
+            // 
+            btnTransactionDelete.Image = (Image)resources.GetObject("btnTransactionDelete.Image");
+            btnTransactionDelete.Location = new Point(356, 462);
+            btnTransactionDelete.Margin = new Padding(0, 5, 0, 10);
+            btnTransactionDelete.Name = "btnTransactionDelete";
+            btnTransactionDelete.Size = new Size(80, 30);
+            btnTransactionDelete.SizeMode = PictureBoxSizeMode.AutoSize;
+            btnTransactionDelete.TabIndex = 27;
+            btnTransactionDelete.TabStop = false;
+            // 
+            // btnTransactionCreate
+            // 
+            btnTransactionCreate.Image = (Image)resources.GetObject("btnTransactionCreate.Image");
+            btnTransactionCreate.Location = new Point(269, 462);
+            btnTransactionCreate.Margin = new Padding(0, 5, 0, 10);
+            btnTransactionCreate.Name = "btnTransactionCreate";
+            btnTransactionCreate.Size = new Size(80, 30);
+            btnTransactionCreate.SizeMode = PictureBoxSizeMode.AutoSize;
+            btnTransactionCreate.TabIndex = 26;
+            btnTransactionCreate.TabStop = false;
+            // 
+            // btnTransactionReload
+            // 
+            btnTransactionReload.Image = (Image)resources.GetObject("btnTransactionReload.Image");
+            btnTransactionReload.Location = new Point(182, 462);
+            btnTransactionReload.Margin = new Padding(0, 5, 0, 10);
+            btnTransactionReload.Name = "btnTransactionReload";
+            btnTransactionReload.Size = new Size(80, 30);
+            btnTransactionReload.SizeMode = PictureBoxSizeMode.AutoSize;
+            btnTransactionReload.TabIndex = 25;
+            btnTransactionReload.TabStop = false;
+            // 
+            // btnTransactionView
+            // 
+            btnTransactionView.Image = (Image)resources.GetObject("btnTransactionView.Image");
+            btnTransactionView.Location = new Point(95, 462);
+            btnTransactionView.Margin = new Padding(0, 5, 0, 10);
+            btnTransactionView.Name = "btnTransactionView";
+            btnTransactionView.Size = new Size(80, 30);
+            btnTransactionView.SizeMode = PictureBoxSizeMode.AutoSize;
+            btnTransactionView.TabIndex = 24;
+            btnTransactionView.TabStop = false;
+            // 
+            // btnTransactionEdit
+            // 
+            btnTransactionEdit.Image = (Image)resources.GetObject("btnTransactionEdit.Image");
+            btnTransactionEdit.Location = new Point(7, 462);
+            btnTransactionEdit.Margin = new Padding(0, 5, 0, 10);
+            btnTransactionEdit.Name = "btnTransactionEdit";
+            btnTransactionEdit.Size = new Size(80, 30);
+            btnTransactionEdit.SizeMode = PictureBoxSizeMode.AutoSize;
+            btnTransactionEdit.TabIndex = 23;
+            btnTransactionEdit.TabStop = false;
             // 
             // pnlTop
             // 
@@ -349,6 +450,7 @@
             // 
             flpLeft.Controls.Add(btnAccounts);
             flpLeft.Controls.Add(btnServices);
+            flpLeft.Controls.Add(btnTransactions);
             flpLeft.Dock = DockStyle.Left;
             flpLeft.Location = new Point(0, 51);
             flpLeft.Margin = new Padding(0);
@@ -367,6 +469,7 @@
             btnAccounts.SizeMode = PictureBoxSizeMode.AutoSize;
             btnAccounts.TabIndex = 10;
             btnAccounts.TabStop = false;
+            btnAccounts.Click += btnAccounts_Click;
             btnAccounts.MouseEnter += btnAccounts_MouseEnter;
             btnAccounts.MouseLeave += btnAccounts_MouseLeave;
             // 
@@ -380,8 +483,23 @@
             btnServices.SizeMode = PictureBoxSizeMode.AutoSize;
             btnServices.TabIndex = 11;
             btnServices.TabStop = false;
+            btnServices.Click += btnServices_Click;
             btnServices.MouseEnter += btnServices_MouseEnter;
             btnServices.MouseLeave += btnServices_MouseLeave;
+            // 
+            // btnTransactions
+            // 
+            btnTransactions.Image = Properties.Resources.transactions;
+            btnTransactions.Location = new Point(30, 121);
+            btnTransactions.Margin = new Padding(0, 0, 0, 10);
+            btnTransactions.Name = "btnTransactions";
+            btnTransactions.Size = new Size(139, 20);
+            btnTransactions.SizeMode = PictureBoxSizeMode.AutoSize;
+            btnTransactions.TabIndex = 12;
+            btnTransactions.TabStop = false;
+            btnTransactions.Click += btnTransactions_Click;
+            btnTransactions.MouseEnter += btnTransactions_MouseEnter;
+            btnTransactions.MouseLeave += btnTransactions_MouseLeave;
             // 
             // FrmView
             // 
@@ -414,6 +532,14 @@
             ((System.ComponentModel.ISupportInitialize)btnServiceReload).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnServiceView).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnServiceEdit).EndInit();
+            tpTransactions.ResumeLayout(false);
+            tpTransactions.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnTransactionDelete).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnTransactionCreate).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnTransactionReload).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnTransactionView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnTransactionEdit).EndInit();
             pnlTop.ResumeLayout(false);
             pnlTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)btnMinimize).EndInit();
@@ -423,6 +549,7 @@
             flpLeft.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)btnAccounts).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnServices).EndInit();
+            ((System.ComponentModel.ISupportInitialize)btnTransactions).EndInit();
             ResumeLayout(false);
         }
 
@@ -432,7 +559,7 @@
         private TabPage tbAccounts;
         private TabPage tbServices;
         private DataGridView dgvAccount;
-        private TabPage tbPayBills;
+        private TabPage tpTransactions;
         private Panel pnlTop;
         private PictureBox pbIcon;
         private PictureBox btnMinimize;
@@ -451,5 +578,13 @@
         private PictureBox btnServiceView;
         private PictureBox btnServiceEdit;
         private DataGridView dgvService;
+        private Panel panel1;
+        private PictureBox btnTransactions;
+        private DataGridView dataGridView1;
+        private PictureBox btnTransactionDelete;
+        private PictureBox btnTransactionCreate;
+        private PictureBox btnTransactionReload;
+        private PictureBox btnTransactionView;
+        private PictureBox btnTransactionEdit;
     }
 }
