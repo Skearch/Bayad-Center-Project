@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "D:\\Coding Project\\Bayad-Center-Project\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{48915D81-8AE2-4E1E-B05F-2B361654A73C}|Bayad Center Project.csproj|d:\\coding project\\bayad-center-project\\services\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{48915D81-8AE2-4E1E-B05F-2B361654A73C}|Bayad Center Project.csproj|solutionrelative:services\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48915D81-8AE2-4E1E-B05F-2B361654A73C}|Bayad Center Project.csproj|d:\\coding project\\bayad-center-project\\services\\serviceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{48915D81-8AE2-4E1E-B05F-2B361654A73C}|Bayad Center Project.csproj|solutionrelative:services\\serviceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{48915D81-8AE2-4E1E-B05F-2B361654A73C}|Bayad Center Project.csproj|d:\\coding project\\bayad-center-project\\frmview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{48915D81-8AE2-4E1E-B05F-2B361654A73C}|Bayad Center Project.csproj|solutionrelative:frmview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,12 +19,12 @@
       "RelativeMoniker": "D:0:0:{48915D81-8AE2-4E1E-B05F-2B361654A73C}|Bayad Center Project.csproj|solutionrelative:frmview.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{48915D81-8AE2-4E1E-B05F-2B361654A73C}|Bayad Center Project.csproj|D:\\Coding Project\\Bayad-Center-Project\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{48915D81-8AE2-4E1E-B05F-2B361654A73C}|Bayad Center Project.csproj|solutionrelative:frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{48915D81-8AE2-4E1E-B05F-2B361654A73C}|Bayad Center Project.csproj|d:\\coding project\\bayad-center-project\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{48915D81-8AE2-4E1E-B05F-2B361654A73C}|Bayad Center Project.csproj|solutionrelative:frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{48915D81-8AE2-4E1E-B05F-2B361654A73C}|Bayad Center Project.csproj|D:\\Coding Project\\Bayad-Center-Project\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{48915D81-8AE2-4E1E-B05F-2B361654A73C}|Bayad Center Project.csproj|solutionrelative:frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,11 +34,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 251,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "FrmLogin.cs [Design]",
               "DocumentMoniker": "D:\\Coding Project\\Bayad-Center-Project\\FrmLogin.cs",
               "RelativeDocumentMoniker": "FrmLogin.cs",
@@ -43,13 +51,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "FrmLogin.cs",
               "DocumentMoniker": "D:\\Coding Project\\Bayad-Center-Project\\FrmLogin.cs",
               "RelativeDocumentMoniker": "FrmLogin.cs",
               "ToolTip": "D:\\Coding Project\\Bayad-Center-Project\\FrmLogin.cs",
               "RelativeToolTip": "FrmLogin.cs",
-              "ViewState": "AgIAADsAAAAAAAAAAAAwwFsAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAADkAAAAAAAAAAAAowFIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-01T00:18:30.413Z",
               "IsPinned": true,
@@ -57,7 +65,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "FrmView.cs [Design]",
               "DocumentMoniker": "D:\\Coding Project\\Bayad-Center-Project\\FrmView.cs",
               "RelativeDocumentMoniker": "FrmView.cs",
@@ -70,13 +78,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "FrmView.cs",
               "DocumentMoniker": "D:\\Coding Project\\Bayad-Center-Project\\FrmView.cs",
               "RelativeDocumentMoniker": "FrmView.cs",
               "ToolTip": "D:\\Coding Project\\Bayad-Center-Project\\FrmView.cs",
               "RelativeToolTip": "FrmView.cs",
-              "ViewState": "AgIAAL8AAAAAAAAAAAAWwNgAAABaAAAAAAAAAA==",
+              "ViewState": "AgIAAH8AAAAAAAAAAAASwJ4AAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-02T17:26:58.187Z",
               "IsPinned": true,
@@ -97,6 +105,32 @@
             {
               "$type": "Bookmark",
               "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AccountService.cs",
+              "DocumentMoniker": "D:\\Coding Project\\Bayad-Center-Project\\Services\\AccountService.cs",
+              "RelativeDocumentMoniker": "Services\\AccountService.cs",
+              "ToolTip": "D:\\Coding Project\\Bayad-Center-Project\\Services\\AccountService.cs",
+              "RelativeToolTip": "Services\\AccountService.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAqwDkAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-24T11:59:14.466Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ServiceService.cs",
+              "DocumentMoniker": "D:\\Coding Project\\Bayad-Center-Project\\Services\\ServiceService.cs",
+              "RelativeDocumentMoniker": "Services\\ServiceService.cs",
+              "ToolTip": "D:\\Coding Project\\Bayad-Center-Project\\Services\\ServiceService.cs",
+              "RelativeToolTip": "Services\\ServiceService.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAwwDUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-24T12:01:00.279Z",
+              "EditorCaption": ""
             }
           ]
         }

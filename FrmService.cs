@@ -11,15 +11,15 @@ namespace Bayad_Center_Project
     public partial class FrmService : Form
     {
         FormRequest serviceFormRequest;
-        public int serviceID = -1;
+        public Service service;
 
         string imageFile = "";
 
-        public FrmService(FormRequest ServiceFormRequest, int ServiceID)
+        public FrmService(FormRequest serviceFormRequest, Service service)
         {
             InitializeComponent();
-            serviceID = ServiceID;
-            serviceFormRequest = ServiceFormRequest;
+            this.service = service;
+            this.serviceFormRequest = serviceFormRequest;
         }
 
         private byte[] ImageDirectoryToByte(string fileName)
@@ -56,7 +56,6 @@ namespace Bayad_Center_Project
 
             if (serviceFormRequest.Equals(FormRequest.Edit) || serviceFormRequest.Equals(FormRequest.View))
             {
-                Service service = serviceService.GetServiceById(serviceID);
                 tbName.Text = service.Name;
                 rtbDescription.Text = service.Description;
 
@@ -90,7 +89,10 @@ namespace Bayad_Center_Project
                             richTextBox.ReadOnly = true;
 
                         if (control is Label)
+                        {
                             control.Text = control.Text.Replace(" *", "");
+                            control.Text = control.Text.Replace("220x220", "");
+                        }
                     }
 
                     break;
@@ -149,7 +151,7 @@ namespace Bayad_Center_Project
                             Icon = ImageToByteArray(pbIcon.Image)
                         };
 
-                        serviceService.EditServiceById(serviceID, serviceEdit);
+                        serviceService.UpdateService(service.Id.Value, serviceEdit);
                         break;
                     case FormRequest.Create:
                         Service serviceCreate = new Service()
@@ -159,7 +161,7 @@ namespace Bayad_Center_Project
                             Icon = ImageDirectoryToByte(imageFile)
                         };
 
-                        serviceService.RegisterService(serviceCreate);
+                        serviceService.AddService(serviceCreate);
                         break;
                 }
 

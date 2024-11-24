@@ -9,12 +9,12 @@ namespace Bayad_Center_Project
     public partial class FrmAccount : Form
     {
         FormRequest accountFormRequest;
-        public int userID = -1;
+        Account account;
 
-        public FrmAccount(FormRequest AccountFormRequest, int UserID)
+        public FrmAccount(FormRequest AccountFormRequest, Account account)
         {
             InitializeComponent();
-            userID = UserID;
+            this.account = account;
             accountFormRequest = AccountFormRequest;
 
             List<AccountType> accountTypes = Enum.GetValues(typeof(AccountType)).Cast<AccountType>().ToList();
@@ -24,22 +24,18 @@ namespace Bayad_Center_Project
 
         private void FrmAccount_Load(object sender, EventArgs e)
         {
-
-            AccountContext _ = new AccountContext();
-            var accountService = new AccountService(_);
             if (accountFormRequest.Equals(FormRequest.Edit) || accountFormRequest.Equals(FormRequest.View))
             {
-                User user = accountService.GetUserById(userID);
-                tbUsername.Text = user.Username;
-                tbPassword.Text = user.Password;
-                cbAccountType.SelectedItem = Enum.Parse(typeof(AccountType), user.AccountType.ToString());
-                tbFirstName.Text = user.FirstName;
-                tbMiddleName.Text = user.MiddleName;
-                tbLastName.Text = user.LastName;
-                dtpBirthdate.Value = user.Birthdate;
-                tbEmailAddress.Text = user.EmailAddress;
-                tbPhoneNumber.Text = user.PhoneNumber;
-                rtbAddress.Text = user.Address;
+                tbUsername.Text = account.Username;
+                tbPassword.Text = account.Password;
+                cbAccountType.SelectedItem = Enum.Parse(typeof(AccountType), account.AccountType.ToString());
+                tbFirstName.Text = account.FirstName;
+                tbMiddleName.Text = account.MiddleName;
+                tbLastName.Text = account.LastName;
+                dtpBirthdate.Value = account.Birthdate;
+                tbEmailAddress.Text = account.EmailAddress;
+                tbPhoneNumber.Text = account.PhoneNumber;
+                rtbAddress.Text = account.Address;
             }
 
             switch (accountFormRequest)
@@ -48,6 +44,7 @@ namespace Bayad_Center_Project
                     btnAction.Text = "Save";
                     break;
                 case FormRequest.View:
+                    tbPassword.PasswordChar = char.Parse("*");
                     btnAction.Text = "Close";
                     lblRequiredFields.Visible = false;
 
@@ -82,7 +79,7 @@ namespace Bayad_Center_Project
                 switch (accountFormRequest)
                 {
                     case FormRequest.Edit:
-                        User userEdit = new User()
+                        Account userEdit = new Account()
                         {
                             Username = string.IsNullOrEmpty(tbUsername.Text) ? null : tbUsername.Text,
                             Password = string.IsNullOrEmpty(tbPassword.Text) ? null : tbPassword.Text,
@@ -96,10 +93,10 @@ namespace Bayad_Center_Project
                             Address = string.IsNullOrEmpty(rtbAddress.Text) ? null : rtbAddress.Text
                         };
 
-                        accountService.EditAccountById(userID, userEdit);
+                        accountService.EditAccountById(account.Id.Value, userEdit);
                         break;
                     case FormRequest.Create:
-                        User userCreate = new User()
+                        Account userCreate = new Account()
                         {
                             Username = string.IsNullOrEmpty(tbUsername.Text) ? null : tbUsername.Text,
                             Password = string.IsNullOrEmpty(tbPassword.Text) ? null : tbPassword.Text,

@@ -5,7 +5,7 @@ namespace Bayad_Center_Project.DbContexts
 {
     public class AccountContext : DbContext
     {
-        public DbSet<User> Users { get; set; }
+        public DbSet<Account> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

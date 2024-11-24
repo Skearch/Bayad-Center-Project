@@ -1,7 +1,11 @@
-﻿using Bayad_Center_Project.DbContexts;
+﻿using Bayad_Center_Project.Contexts;
+using Bayad_Center_Project.DbContexts;
 using Bayad_Center_Project.Entities;
 using Bayad_Center_Project.Enums;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace Bayad_Center_Project.Services
 {
@@ -14,107 +18,93 @@ namespace Bayad_Center_Project.Services
             _dbContext = dbContext;
         }
 
-        public bool ValidateLogin(string username, string password, AccountType accountType)
+        public Account ValidateLogin(string username, string password)
         {
-            var user = _dbContext.Users.FirstOrDefault(u => u.Username == username && u.AccountType == accountType);
-            if (user != null && user.Password == password)
-                return true;
+            Account user = _dbContext.Users.FirstOrDefault(u => u.Username == username);
+            if (user == null)
+                throw new Exception("No matching account.");
 
-            throw new Exception("No matching account.");
+            if (user.Password != password)
+                throw new Exception("Invalid password.");
+
+            return user;
         }
 
-        public bool RegisterAccount(User user)
+        public bool RegisterAccount(Account user)
         {
             if (_dbContext.Users.Any(u => u.Username == user.Username))
-                throw new Exception("This username already exist.");
+                throw new Exception("This username already exists.");
 
-            var invalidFields = user.GetType().GetProperties()
-            .Where(p => p.PropertyType == typeof(string))
-            .Where(p => p.GetValue(user) is string value && value.Length > p.GetCustomAttributes(typeof(MaxLengthAttribute), false)
-            .Cast<MaxLengthAttribute>()
-            .FirstOrDefault()?.Length)
-            .Select(p => p.Name);
-
-            if (invalidFields.Any())
-                throw new ValidationException($"The following fields are too long: {string.Join(", ", invalidFields)}");
+            ValidateUserFields(user);
 
             _dbContext.Users.Add(user);
             _dbContext.SaveChanges();
             return true;
         }
 
-        public bool EditAccountById(int userID, User user)
+        public bool EditAccountById(int userId, Account user)
         {
-            var u = _dbContext.Users.FirstOrDefault(u => u.Id == userID);
-            if (u == null)
-                throw new Exception($"Account with the id: {userID} does not exist.");
+            var existingUser = _dbContext.Users.FirstOrDefault(u => u.Id == userId);
+            if (existingUser == null)
+                throw new Exception($"Account with ID: {userId} does not exist.");
 
+            ValidateUserFields(user);
+
+            existingUser.Username = user.Username;
+            existingUser.Password = user.Password;
+            existingUser.AccountType = user.AccountType;
+            existingUser.FirstName = user.FirstName;
+            existingUser.MiddleName = user.MiddleName;
+            existingUser.LastName = user.LastName;
+            existingUser.Birthdate = user.Birthdate;
+            existingUser.EmailAddress = user.EmailAddress;
+            existingUser.PhoneNumber = user.PhoneNumber;
+            existingUser.Address = user.Address;
+
+            _dbContext.SaveChanges();
+            return true;
+        }
+
+        public bool DeleteAccountById(int accountId)
+        {
+            using var context = new DatabaseContext();
+            var account = context.Set<Account>().Find(accountId);
+            if (account == null)
+                throw new Exception($"Given account does not exist.");
+
+            if (context.Set<Transaction>().Any(t => t.AccountId == accountId))
+                throw new Exception($"This Account is included in one or more record in Transactions.");
+
+            context.Set<Account>().Remove(account);
+            return context.SaveChanges() > 0;
+        }
+
+        public Account GetAccountById(int accountId)
+        {
+            var account = _dbContext.Set<Account>().FirstOrDefault(s => s.Id == accountId);
+            if (account == null)
+                throw new Exception($"Account with ID: {accountId} not found.");
+
+            return account;
+        }
+
+
+        public List<Account> GetAllAccounts()
+        {
+            return _dbContext.Set<Account>().ToList();
+        }
+
+        private void ValidateUserFields(Account user)
+        {
             var invalidFields = user.GetType().GetProperties()
-            .Where(p => p.PropertyType == typeof(string))
-            .Where(p => p.GetValue(user) is string value && value.Length > p.GetCustomAttributes(typeof(MaxLengthAttribute), false)
-            .Cast<MaxLengthAttribute>()
-            .FirstOrDefault()?.Length)
-            .Select(p => p.Name);
+                .Where(p => p.PropertyType == typeof(string))
+                .Where(p => p.GetValue(user) is string value && value.Length > p.GetCustomAttributes(typeof(MaxLengthAttribute), false)
+                .Cast<MaxLengthAttribute>()
+                .FirstOrDefault()?.Length)
+                .Select(p => p.Name);
 
             if (invalidFields.Any())
                 throw new ValidationException($"The following fields are too long: {string.Join(", ", invalidFields)}");
-
-            u.Username = user.Username;
-            u.Password = user.Password;
-            u.AccountType = user.AccountType;
-            u.FirstName = user.FirstName;
-            u.MiddleName = user.MiddleName;
-            u.LastName = user.LastName;
-            u.Birthdate = user.Birthdate;
-            u.EmailAddress = user.EmailAddress;
-            u.PhoneNumber = user.PhoneNumber;
-            u.Address = user.Address;
-
-            _dbContext.SaveChanges();
-
-            return true;
-        }
-
-        public User GetUserById(int userId)
-        {
-            var user = _dbContext.Users.FirstOrDefault(u => u.Id == userId);
-            if (user == null)
-                throw new Exception("User with ID " + userId + " not found.");
-
-            return user;
-        }
-
-        public bool DeleteAccountById(int userId)
-        {
-            var user = _dbContext.Users.FirstOrDefault(u => u.Id == userId);
-            if (user == null)
-                throw new Exception($"Account with ID: {userId} does not exist.");
-
-            _dbContext.Users.Remove(user);
-            _dbContext.SaveChanges();
-
-            return true;
-        }
-
-        public void PopulateUserTable(DataGridView dataGridView)
-        {
-            List<User> users = _dbContext.Users.ToList();
-
-            dataGridView.Rows.Clear();
-
-            if (dataGridView.Columns.Count == 0)
-            {
-                foreach (var propertyInfo in typeof(User).GetProperties())
-                    dataGridView.Columns.Add(propertyInfo.Name, propertyInfo.Name);
-            }
-
-            foreach (var user in users)
-            {
-                int rowIndex = dataGridView.Rows.Add();
-
-                foreach (var propertyInfo in typeof(User).GetProperties())
-                    dataGridView.Rows[rowIndex].Cells[propertyInfo.Name].Value = propertyInfo.GetValue(user);
-            }
         }
     }
 }

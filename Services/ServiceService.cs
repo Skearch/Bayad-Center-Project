@@ -1,6 +1,10 @@
-﻿using Bayad_Center_Project.Entities;
+﻿using Bayad_Center_Project.Contexts;
+using Bayad_Center_Project.DbContexts;
+using Bayad_Center_Project.Entities;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
+using System.Linq;
 
 namespace Bayad_Center_Project.Services
 {
@@ -13,105 +17,70 @@ namespace Bayad_Center_Project.Services
             _dbContext = dbContext;
         }
 
-        public bool DeleteServiceById(int serviceID)
+        public bool AddService(Service service)
         {
-            var service = _dbContext.Services.FirstOrDefault(u => u.Id == serviceID);
-            if (service == null)
-                throw new Exception($"Service with ID: {serviceID} does not exist.");
+            ValidateServiceFields(service);
 
-            _dbContext.Services.Remove(service);
-            _dbContext.SaveChanges();
-
-            return true;
-        }
-
-        public bool EditServiceById(int serviceID, Service service)
-        {
-            var u = _dbContext.Services.FirstOrDefault(u => u.Id == serviceID);
-            if (u == null)
-                throw new Exception($"Service with the id: {serviceID} does not exist.");
-
-            var invalidFields = service.GetType().GetProperties()
-            .Where(p => p.PropertyType == typeof(string))
-            .Where(p => p.GetValue(service) is string value && value.Length > p.GetCustomAttributes(typeof(MaxLengthAttribute), false)
-            .Cast<MaxLengthAttribute>()
-            .FirstOrDefault()?.Length)
-            .Select(p => p.Name);
-
-            if (invalidFields.Any())
-                throw new ValidationException($"The following fields are too long: {string.Join(", ", invalidFields)}");
-
-            if (service.Icon == null)
-                throw new ValidationException($"Set an icon first before creating.");
-
-            u.Name = service.Name;
-            u.Description = service.Description;
-            u.Icon = service.Icon;
-
-            _dbContext.SaveChanges();
-
-            return true;
-        }
-
-        public bool RegisterService(Service service)
-        {
-            if (_dbContext.Services.Any(u => u.Name == service.Name))
-                throw new Exception("This service already exist.");
-
-            var invalidFields = service.GetType().GetProperties()
-            .Where(p => p.PropertyType == typeof(string))
-            .Where(p => p.GetValue(service) is string value && value.Length > p.GetCustomAttributes(typeof(MaxLengthAttribute), false)
-            .Cast<MaxLengthAttribute>()
-            .FirstOrDefault()?.Length)
-            .Select(p => p.Name);
-
-            if (invalidFields.Any())
-                throw new ValidationException($"The following fields are too long: {string.Join(", ", invalidFields)}");
-
-            if (service.Icon == null)
-                throw new ValidationException($"Set an icon first before creating.");
-
-            _dbContext.Services.Add(service);
+            _dbContext.Set<Service>().Add(service);
             _dbContext.SaveChanges();
             return true;
         }
 
         public Service GetServiceById(int serviceId)
         {
-            var service = _dbContext.Services.FirstOrDefault(u => u.Id == serviceId);
+            var service = _dbContext.Set<Service>().FirstOrDefault(s => s.Id == serviceId);
             if (service == null)
-                throw new Exception("Service with ID " + serviceId + " not found.");
+                throw new Exception($"Service with ID: {serviceId} not found.");
 
             return service;
         }
 
-        public void PopulateTable(DataGridView dataGridView)
+        public bool UpdateService(int serviceId, Service updatedService)
         {
-            try
-            {
-                List<Service> services = _dbContext.Services.ToList();
+            var service = _dbContext.Set<Service>().FirstOrDefault(s => s.Id == serviceId);
+            if (service == null)
+                throw new Exception($"Service with ID: {serviceId} not found.");
 
-                dataGridView.Rows.Clear();
+            ValidateServiceFields(updatedService);
 
-                if (dataGridView.Columns.Count == 0)
-                {
-                    foreach (var propertyInfo in typeof(Service).GetProperties())
-                        dataGridView.Columns.Add(propertyInfo.Name, propertyInfo.Name);
-                }
+            service.Name = updatedService.Name;
+            service.Description = updatedService.Description;
+            service.Icon = updatedService.Icon;
 
-                foreach (var service in services)
-                {
-                    int rowIndex = dataGridView.Rows.Add();
-
-                    foreach (var propertyInfo in typeof(Service).GetProperties())
-                        dataGridView.Rows[rowIndex].Cells[propertyInfo.Name].Value = propertyInfo.GetValue(service);
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.Message);
-            }
+            _dbContext.SaveChanges();
+            return true;
         }
 
+        public bool DeleteService(int serviceId)
+        {
+            using var context = new DatabaseContext();
+            var service = context.Set<Service>().Find(serviceId);
+            if (service == null)
+                throw new Exception($"Given service does not exist.");
+
+            if (context.Set<Transaction>().Any(t => t.ServiceId == serviceId))
+                throw new Exception($"This Service is included in one or more record in Transactions.");
+
+            context.Set<Service>().Remove(service);
+            return context.SaveChanges() > 0;
+        }
+
+        public List<Service> GetAllServices()
+        {
+            return _dbContext.Set<Service>().ToList();
+        }
+
+        private void ValidateServiceFields(Service service)
+        {
+            var invalidFields = service.GetType().GetProperties()
+                .Where(p => p.PropertyType == typeof(string))
+                .Where(p => p.GetValue(service) is string value && value.Length > p.GetCustomAttributes(typeof(MaxLengthAttribute), false)
+                .Cast<MaxLengthAttribute>()
+                .FirstOrDefault()?.Length)
+                .Select(p => p.Name);
+
+            if (invalidFields.Any())
+                throw new ValidationException($"The following fields are too long: {string.Join(", ", invalidFields)}");
+        }
     }
 }

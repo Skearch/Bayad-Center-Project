@@ -3,6 +3,7 @@ using Bayad_Center_Project.DbContexts;
 using Bayad_Center_Project.Entities;
 using Bayad_Center_Project.Enums;
 using Bayad_Center_Project.Services;
+using Bayad_Center_Project.Utilities;
 using System.Data.SQLite;
 using System.Runtime.InteropServices;
 
@@ -33,15 +34,15 @@ namespace Bayad_Center_Project
                 AccountContext _ = new AccountContext();
                 var accountService = new AccountService(_);
 
-                User user = new User()
+                Account user = new Account()
                 {
                     Username = "admin",
                     Password = "123",
                     AccountType = AccountType.Admin,
-                    FirstName = "adminFirstName",
-                    LastName = "adminLastName",
+                    FirstName = "Jacob",
+                    LastName = "Parez",
                     Birthdate = DateTime.Now,
-                    Address = "adminAddress"
+                    Address = "Caloocan"
                 };
 
                 accountService.RegisterAccount(user);
@@ -72,35 +73,15 @@ namespace Bayad_Center_Project
             }
         }
 
-        private void btnTeller_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                AccountContext _ = new AccountContext();
-                var accountService = new AccountService(_);
-                accountService.ValidateLogin(tbUsername.Text, tbPassword.Text, AccountType.Teller);
-
-                FrmView frmAdminView = new FrmView();
-                frmAdminView.Show();
-                this.Hide();
-
-                Settings();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error");
-            }
-        }
-
         private void btnAdmin_Click(object sender, EventArgs e)
         {
             try
             {
                 AccountContext _ = new AccountContext();
-                var accountService = new AccountService(_);
-                accountService.ValidateLogin(tbUsername.Text, tbPassword.Text, AccountType.Admin);
+                AccountService accountService = new AccountService(_);
+                Account user = accountService.ValidateLogin(tbUsername.Text, tbPassword.Text);
 
-                FrmView frmAdminView = new FrmView();
+                FrmView frmAdminView = new FrmView(user ?? null);
                 frmAdminView.Show();
                 this.Hide();
 

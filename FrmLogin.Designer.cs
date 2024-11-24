@@ -35,7 +35,6 @@
             pbIcon = new PictureBox();
             pictureBox2 = new PictureBox();
             pictureBox3 = new PictureBox();
-            btnTeller = new PictureBox();
             pictureBox6 = new PictureBox();
             btnAdmin = new PictureBox();
             btnExit = new PictureBox();
@@ -43,7 +42,6 @@
             ((System.ComponentModel.ISupportInitialize)pbIcon).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)btnTeller).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnAdmin).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btnExit).BeginInit();
@@ -114,17 +112,6 @@
             pictureBox3.TabIndex = 10;
             pictureBox3.TabStop = false;
             // 
-            // btnTeller
-            // 
-            btnTeller.Image = (Image)resources.GetObject("btnTeller.Image");
-            btnTeller.Location = new Point(264, 318);
-            btnTeller.Name = "btnTeller";
-            btnTeller.Size = new Size(120, 40);
-            btnTeller.SizeMode = PictureBoxSizeMode.AutoSize;
-            btnTeller.TabIndex = 12;
-            btnTeller.TabStop = false;
-            btnTeller.Click += btnTeller_Click;
-            // 
             // pictureBox6
             // 
             pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
@@ -137,10 +124,10 @@
             // 
             // btnAdmin
             // 
-            btnAdmin.Image = (Image)resources.GetObject("btnAdmin.Image");
+            btnAdmin.Image = Properties.Resources.Login;
             btnAdmin.Location = new Point(128, 318);
             btnAdmin.Name = "btnAdmin";
-            btnAdmin.Size = new Size(120, 40);
+            btnAdmin.Size = new Size(256, 40);
             btnAdmin.SizeMode = PictureBoxSizeMode.AutoSize;
             btnAdmin.TabIndex = 14;
             btnAdmin.TabStop = false;
@@ -179,7 +166,6 @@
             Controls.Add(tbPassword);
             Controls.Add(btnAdmin);
             Controls.Add(pictureBox6);
-            Controls.Add(btnTeller);
             Controls.Add(pictureBox3);
             Controls.Add(pbIcon);
             Controls.Add(cbRememberLogin);
@@ -193,7 +179,6 @@
             ((System.ComponentModel.ISupportInitialize)pbIcon).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)btnTeller).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnAdmin).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnExit).EndInit();
@@ -210,7 +195,6 @@
         private PictureBox pbIcon;
         private PictureBox pictureBox2;
         private PictureBox pictureBox3;
-        private PictureBox btnTeller;
         private PictureBox pictureBox6;
         private PictureBox btnAdmin;
         private PictureBox btnExit;

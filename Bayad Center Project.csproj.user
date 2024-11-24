@@ -4,7 +4,13 @@
     <Compile Update="FrmAccount.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FrmSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="FrmService.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FrmTransaction.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="FrmView.cs">
@@ -22,6 +28,9 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Update="FrmLogin.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Resources.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

@@ -14,5 +14,7 @@ namespace Bayad_Center_Project.Entities
         public string? Description { get; set; }
 
         public byte[]? Icon { get; set; }
+
+        public ICollection<Transaction> Transactions { get; set; }
     }
 }

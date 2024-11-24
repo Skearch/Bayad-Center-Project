@@ -50,10 +50,11 @@
             // btnSetImage
             // 
             btnSetImage.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnSetImage.BackColor = Color.FromArgb(60, 60, 60);
+            btnSetImage.BackColor = Color.Gray;
+            btnSetImage.FlatAppearance.BorderSize = 0;
             btnSetImage.FlatStyle = FlatStyle.Flat;
             btnSetImage.ForeColor = Color.White;
-            btnSetImage.Location = new Point(12, 310);
+            btnSetImage.Location = new Point(12, 292);
             btnSetImage.Name = "btnSetImage";
             btnSetImage.Size = new Size(79, 27);
             btnSetImage.TabIndex = 6;
@@ -63,9 +64,9 @@
             // 
             // pbIcon
             // 
-            pbIcon.BackColor = Color.FromArgb(60, 60, 60);
+            pbIcon.BackColor = Color.Silver;
             pbIcon.BackgroundImageLayout = ImageLayout.Zoom;
-            pbIcon.Location = new Point(12, 84);
+            pbIcon.Location = new Point(12, 66);
             pbIcon.Name = "pbIcon";
             pbIcon.Size = new Size(220, 220);
             pbIcon.TabIndex = 7;
@@ -74,10 +75,11 @@
             // btnClearImage
             // 
             btnClearImage.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnClearImage.BackColor = Color.FromArgb(60, 60, 60);
+            btnClearImage.BackColor = Color.Gray;
+            btnClearImage.FlatAppearance.BorderSize = 0;
             btnClearImage.FlatStyle = FlatStyle.Flat;
             btnClearImage.ForeColor = Color.White;
-            btnClearImage.Location = new Point(97, 310);
+            btnClearImage.Location = new Point(97, 292);
             btnClearImage.Name = "btnClearImage";
             btnClearImage.Size = new Size(82, 27);
             btnClearImage.TabIndex = 8;
@@ -89,8 +91,8 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label11.ForeColor = Color.White;
-            label11.Location = new Point(12, 40);
+            label11.ForeColor = Color.Black;
+            label11.Location = new Point(12, 24);
             label11.Name = "label11";
             label11.Size = new Size(124, 15);
             label11.TabIndex = 39;
@@ -99,8 +101,8 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.ForeColor = Color.White;
-            label4.Location = new Point(12, 66);
+            label4.ForeColor = Color.Black;
+            label4.Location = new Point(12, 50);
             label4.Name = "label4";
             label4.Size = new Size(83, 15);
             label4.TabIndex = 40;
@@ -108,10 +110,10 @@
             // 
             // rtbDescription
             // 
-            rtbDescription.BackColor = Color.FromArgb(60, 60, 60);
+            rtbDescription.BackColor = Color.Silver;
             rtbDescription.BorderStyle = BorderStyle.None;
-            rtbDescription.ForeColor = Color.White;
-            rtbDescription.Location = new Point(238, 121);
+            rtbDescription.ForeColor = Color.Black;
+            rtbDescription.Location = new Point(238, 103);
             rtbDescription.Name = "rtbDescription";
             rtbDescription.Size = new Size(211, 183);
             rtbDescription.TabIndex = 41;
@@ -120,8 +122,8 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(238, 66);
+            label1.ForeColor = Color.Black;
+            label1.Location = new Point(238, 50);
             label1.Name = "label1";
             label1.Size = new Size(47, 15);
             label1.TabIndex = 43;
@@ -129,10 +131,10 @@
             // 
             // tbName
             // 
-            tbName.BackColor = Color.FromArgb(60, 60, 60);
+            tbName.BackColor = Color.Silver;
             tbName.BorderStyle = BorderStyle.None;
-            tbName.ForeColor = Color.White;
-            tbName.Location = new Point(238, 84);
+            tbName.ForeColor = Color.Black;
+            tbName.Location = new Point(238, 68);
             tbName.Name = "tbName";
             tbName.Size = new Size(211, 16);
             tbName.TabIndex = 42;
@@ -140,8 +142,8 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(238, 103);
+            label2.ForeColor = Color.Black;
+            label2.Location = new Point(238, 87);
             label2.Name = "label2";
             label2.Size = new Size(67, 15);
             label2.TabIndex = 44;
@@ -159,21 +161,24 @@
             // 
             // btnAction
             // 
+            btnAction.BackColor = Color.Gray;
+            btnAction.FlatAppearance.BorderSize = 0;
             btnAction.FlatStyle = FlatStyle.Flat;
             btnAction.ForeColor = Color.White;
-            btnAction.Location = new Point(290, 386);
+            btnAction.Location = new Point(290, 292);
             btnAction.Name = "btnAction";
             btnAction.Size = new Size(159, 45);
             btnAction.TabIndex = 46;
-            btnAction.UseVisualStyleBackColor = true;
+            btnAction.Text = "Action";
+            btnAction.UseVisualStyleBackColor = false;
             btnAction.Click += btnAction_Click;
             // 
             // FrmService
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(30, 30, 30);
-            ClientSize = new Size(463, 443);
+            BackColor = Color.FromArgb(230, 239, 245);
+            ClientSize = new Size(461, 349);
             Controls.Add(btnAction);
             Controls.Add(lblRequiredFields);
             Controls.Add(label2);

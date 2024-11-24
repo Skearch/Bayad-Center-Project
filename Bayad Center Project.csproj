@@ -10,10 +10,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MaterialSkin.2" Version="2.3.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.0-rc.2.24474.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="9.0.0" />
     <PackageReference Include="System.Data.SQLite" Version="1.0.119" />
-    <PackageReference Include="System.Drawing.Common" Version="9.0.0-rc.2.24474.1" />
+    <PackageReference Include="System.Drawing.Common" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,6 +40,10 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Icons\" />
   </ItemGroup>
 
 </Project>
