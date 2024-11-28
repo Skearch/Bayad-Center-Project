@@ -73,8 +73,7 @@ namespace Bayad_Center_Project
         {
             try
             {
-                DatabaseContext databaseContext = new DatabaseContext();
-                var accountService = new AccountService(databaseContext);
+                var accountService = new AccountService(new DatabaseContext());
 
                 switch (accountFormRequest)
                 {
@@ -94,6 +93,7 @@ namespace Bayad_Center_Project
                         };
 
                         accountService.EditAccountById(account.AccountID, userEdit);
+                        this.Close();
                         break;
                     case FormRequest.Create:
                         Account userCreate = new Account()
@@ -111,10 +111,12 @@ namespace Bayad_Center_Project
                         };
 
                         accountService.RegisterAccount(userCreate);
+                        this.Close();
                         break;
+                    case FormRequest.View:
+                        this.Close();
+                        break;  
                 }
-
-                this.Hide();
             }
             catch (Exception ex)
             {

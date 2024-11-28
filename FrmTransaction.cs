@@ -80,9 +80,14 @@ namespace Bayad_Center_Project
                 switch (transactionFormRequest)
                 {
                     case FormRequest.Create:
+                        decimal amountToPay = decimal.Parse(tbAmountToPay.Text);
+                        decimal paymentAmount = decimal.Parse(tbPaymentAmount.Text);
+
+                        if (paymentAmount < amountToPay)
+                            throw new Exception("Payment Amount must be greater than or equal to Amount To Pay.");
 
                         if (account == null || service == null)
-                            new Exception("Service or Teller cannot be null.");
+                            throw new Exception("Service or Teller cannot be null.");
 
                         var transactionCreate = new Transaction()
                         {
@@ -109,11 +114,12 @@ namespace Bayad_Center_Project
 
                         var receiptService = new ReceiptService(new DatabaseContext());
                         receiptService.CreateReceipt(receiptCreate);
-
+                        this.Close();
+                        break;
+                    case FormRequest.View:
+                        this.Close();
                         break;
                 }
-
-                this.Hide();
             }
             catch (SqlException sql)
             {

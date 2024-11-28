@@ -176,6 +176,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(230, 239, 245);
             ClientSize = new Size(463, 299);
             Controls.Add(btnAction);
             Controls.Add(tbDateIssued);

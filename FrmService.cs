@@ -150,6 +150,7 @@ namespace Bayad_Center_Project
                         };
 
                         serviceService.UpdateService(service.ServiceID, serviceEdit);
+                        this.Close();
                         break;
                     case FormRequest.Create:
                         Service serviceCreate = new Service()
@@ -160,10 +161,12 @@ namespace Bayad_Center_Project
                         };
 
                         serviceService.AddService(serviceCreate);
+                        this.Close();
+                        break;
+                    case FormRequest.View:
+                        this.Close();
                         break;
                 }
-
-                this.Hide();
             }
             catch (Exception ex)
             {
