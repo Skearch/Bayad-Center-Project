@@ -1,41 +1,51 @@
 ﻿using Bayad_Center_Project.Enums;
-
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Bayad_Center_Project.Entities
 {
     public class Account
     {
-        public int? Id { get; set; }
+        [Key]
+        public int AccountID { get; set; }
 
-        [MaxLength(50)]
-        public string? Username { get; set; }
+        [Required]
+        [ForeignKey("Transaction")]
+        public int TransactionID { get; set; }
 
-        [MaxLength(150)]
-        public string? Password { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string Username { get; set; }
 
+        [Required]
+        [StringLength(150)]
+        public string Password { get; set; }
+
+        [Required]
         public AccountType AccountType { get; set; }
 
-        [MaxLength(100)]
-        public string? FirstName { get; set; }
+        [Required]
+        [StringLength(100)]
+        public string FirstName { get; set; }
 
-        [MaxLength(100)]
+        [StringLength(100)]
         public string? MiddleName { get; set; }
 
-        [MaxLength(100)]
-        public string? LastName { get; set; }
+        [Required]
+        [StringLength(100)]
+        public string LastName { get; set; }
 
+        [Required]
         public DateTime Birthdate { get; set; }
 
-        [MaxLength(250)]
+        [StringLength(250)]
         public string? EmailAddress { get; set; }
 
-        [MaxLength(50)]
+        [StringLength(50)]
         public string? PhoneNumber { get; set; }
 
-        [MaxLength(500)]
-        public string? Address { get; set; }
-
-        public ICollection<Transaction> Transactions { get; set; }
+        [Required]
+        [StringLength(500)]
+        public string Address { get; set; }
     }
 }

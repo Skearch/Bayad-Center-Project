@@ -1,20 +1,22 @@
 ﻿using Microsoft.Data.Sqlite;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
 namespace Bayad_Center_Project.Entities
 {
     public class Service
     {
-        public int? Id { get; set; }
+        [Key]
+        public int ServiceID { get; set; }
 
-        [MaxLength(50)]
-        public string? Name { get; set; }
+        [Required]
+        [StringLength(50)]
+        public string Name { get; set; }
 
-        [MaxLength(500)]
+        [StringLength(500)]
         public string? Description { get; set; }
 
-        public byte[]? Icon { get; set; }
-
-        public ICollection<Transaction> Transactions { get; set; }
+        [Required]
+        public byte[] Icon { get; set; }
     }
 }

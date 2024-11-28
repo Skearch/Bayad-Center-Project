@@ -1,61 +1,59 @@
 ﻿using Bayad_Center_Project.Contexts;
-using Bayad_Center_Project.DbContexts;
 using Bayad_Center_Project.Entities;
 using Bayad_Center_Project.Enums;
 using Bayad_Center_Project.Properties;
 using Bayad_Center_Project.Services;
 using Bayad_Center_Project.Utilities;
-using System.Data.SqlClient;
-using System.Diagnostics;
 
 namespace Bayad_Center_Project
 {
     public partial class FrmView : Form
     {
-        Account user;
+        Account account;
 
-        public FrmView(Account user)
+        public FrmView(Account account)
         {
             InitializeComponent();
             Region = Region.FromHrgn(CreateRoundRectRgn.Apply(0, 0, Width, Height, 15, 15));
-            this.user = user;
+            this.account = account;
         }
 
         private void UpdateTables()
         {
             try
             {
-                var accountContext = new AccountContext();
-                var accountService = new AccountService(accountContext);
+                var _ = new DatabaseContext();
+
+                var accountService = new AccountService(_);
                 var accounts = accountService.GetAllAccounts();
                 dgvAccount.DataSource = accounts.Select(s => new
                 {
-                    s.Id,
+                    s.AccountID,
                     s.Username,
                     FullName = string.IsNullOrEmpty(s.MiddleName) ? $"{s.FirstName} {s.LastName}" : $"{s.FirstName} {s.MiddleName.ToCharArray().First()}. {s.LastName}",
                     BirthDate = s.Birthdate,
                     Account = s.AccountType
                 }).ToList();
 
-                var serviceContext = new ServiceContext();
-                var serviceService = new ServiceService(serviceContext);
+                var serviceService = new ServiceService(_);
                 var services = serviceService.GetAllServices();
                 dgvService.DataSource = services.Select(s => new
                 {
-                    s.Id,
+                    s.ServiceID,
                     s.Name,
                 }).ToList();
 
-                var transactionContext = new TransactionContext();
-                var transactionService = new TransactionService(transactionContext);
+                var transactionService = new TransactionService(_);
                 var transactions = transactionService.GetAllTransactions();
+
+                var receiptService = new ReceiptService(_);
                 dgvTransaction.DataSource = transactions.Select(s => new
                 {
-                    s.Id,
+                    s.TransactionID,
                     s.AccountNumber,
-                    s.Amount,
+                    AmountPaid = receiptService.GetReceiptByTransactionId((int)s.TransactionID).AmountToPay,
                     Service = serviceService.GetServiceById((int)s.ServiceId).Name,
-                    Teller = accountService.GetAccountById((int)s.AccountId).Username,
+                    Issuer = accountService.GetAccountById((int)s.AccountId).Username,
                 }).ToList();
 
             }
@@ -73,8 +71,7 @@ namespace Bayad_Center_Project
             DataGridViewRow selectedRow = dgvAccount.SelectedRows[0];
             int selectedID = Convert.ToInt32(selectedRow.Cells[0].Value);
 
-            AccountContext accountContext = new AccountContext();
-            AccountService accountService = new AccountService(accountContext);
+            AccountService accountService = new AccountService(new DatabaseContext());
             Account account = accountService.GetAccountById(selectedID);
 
             return account;
@@ -88,8 +85,7 @@ namespace Bayad_Center_Project
             DataGridViewRow selectedRow = dgvService.SelectedRows[0];
             int selectedID = Convert.ToInt32(selectedRow.Cells[0].Value);
 
-            ServiceContext serviceContext = new ServiceContext();
-            ServiceService serviceService = new ServiceService(serviceContext);
+            ServiceService serviceService = new ServiceService(new DatabaseContext());
             Service service = serviceService.GetServiceById(selectedID);
 
             return service;
@@ -103,8 +99,7 @@ namespace Bayad_Center_Project
             DataGridViewRow selectedRow = dgvTransaction.SelectedRows[0];
             int selectedID = Convert.ToInt32(selectedRow.Cells[0].Value);
 
-            TransactionContext transactionContext = new TransactionContext();
-            TransactionService transactionService = new TransactionService(transactionContext);
+            TransactionService transactionService = new TransactionService(new DatabaseContext());
             Transaction transaction = transactionService.GetTransactionById(selectedID);
 
             return transaction;
@@ -120,8 +115,8 @@ namespace Bayad_Center_Project
             tcMenu.SizeMode = TabSizeMode.Fixed;
             new TabPadding(tcMenu);
 
-            var accountService = new AccountService(new AccountContext());
-            Account currentUser = accountService.GetAccountById(user.Id.Value);
+            var accountService = new AccountService(new DatabaseContext());
+            Account currentUser = accountService.GetAccountById(account.AccountID);
             lblUser.Text = $"Welcome, {currentUser.FirstName}!";
 
             if (currentUser.AccountType.Equals(AccountType.Teller))
@@ -155,8 +150,8 @@ namespace Bayad_Center_Project
             {
                 try
                 {
-                    var accountService = new AccountService(new AccountContext());
-                    accountService.DeleteAccountById(SelectedAccount().Id.Value);
+                    var accountService = new AccountService(new DatabaseContext());
+                    accountService.DeleteAccountById(SelectedAccount().AccountID);
                     UpdateTables();
                 }
                 catch (Exception ex)
@@ -215,8 +210,8 @@ namespace Bayad_Center_Project
             {
                 try
                 {
-                    var ServiceContext = new ServiceService(new ServiceContext());
-                    ServiceContext.DeleteService(SelectedService().Id.Value);
+                    var ServiceContext = new ServiceService(new DatabaseContext());
+                    ServiceContext.DeleteService(SelectedService().ServiceID);
                     UpdateTables();
                 }
                 catch (Exception ex)
@@ -282,7 +277,7 @@ namespace Bayad_Center_Project
         {
             try
             {
-                FrmTransaction frmAccount = new FrmTransaction(FormRequest.Create, user, null);
+                FrmTransaction frmAccount = new FrmTransaction(FormRequest.Create, account, null);
                 frmAccount.Show();
             }
             catch (Exception ex)
@@ -314,7 +309,7 @@ namespace Bayad_Center_Project
             {
                 try
                 {
-                    var transactionService = new TransactionService(new TransactionContext());
+                    var transactionService = new TransactionService(new DatabaseContext());
                     transactionService.DeleteTransaction(SelectedTransaction());
                     UpdateTables();
                 }

@@ -138,8 +138,6 @@ D:\Coding Project\Bayad-Center-Project\bin\Debug\net8.0-windows\runtimes\linux-x
 D:\Coding Project\Bayad-Center-Project\bin\Debug\net8.0-windows\runtimes\osx-x64\native\SQLite.Interop.dll
 D:\Coding Project\Bayad-Center-Project\bin\Debug\net8.0-windows\runtimes\win-x64\native\SQLite.Interop.dll
 D:\Coding Project\Bayad-Center-Project\bin\Debug\net8.0-windows\runtimes\win-x86\native\SQLite.Interop.dll
-D:\Coding Project\Bayad-Center-Project\bin\Debug\net8.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
-D:\Coding Project\Bayad-Center-Project\bin\Debug\net8.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 D:\Coding Project\Bayad-Center-Project\bin\Debug\net8.0-windows\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 D:\Coding Project\Bayad-Center-Project\obj\Debug\net8.0-windows\Bayad Center Project.csproj.AssemblyReference.cache
 D:\Coding Project\Bayad-Center-Project\obj\Debug\net8.0-windows\Bayad_Center_Project.FrmAccount.resources
@@ -165,3 +163,6 @@ D:\Coding Project\Bayad-Center-Project\bin\Debug\net8.0-windows\runtimes\win\lib
 D:\Coding Project\Bayad-Center-Project\obj\Debug\net8.0-windows\Bayad_Center_Project.Properties.Resources.resources
 D:\Coding Project\Bayad-Center-Project\obj\Debug\net8.0-windows\Bayad_Center_Project.FrmSelection.resources
 D:\Coding Project\Bayad-Center-Project\obj\Debug\net8.0-windows\Bayad_Center_Project.FrmTransaction.resources
+D:\Coding Project\Bayad-Center-Project\bin\Debug\net8.0-windows\runtimes\unix\lib\net8.0\System.Data.SqlClient.dll
+D:\Coding Project\Bayad-Center-Project\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.Data.SqlClient.dll
+D:\Coding Project\Bayad-Center-Project\obj\Debug\net8.0-windows\Bayad_Center_Project.FrmReceipt.resources

@@ -1,11 +1,10 @@
 ﻿using Bayad_Center_Project.Contexts;
-using Bayad_Center_Project.DbContexts;
 using Bayad_Center_Project.Entities;
 using Bayad_Center_Project.Enums;
 using Bayad_Center_Project.Services;
 using Bayad_Center_Project.Utilities;
 using System.Data.SQLite;
-using System.Runtime.InteropServices;
+using System.Diagnostics;
 
 namespace Bayad_Center_Project
 {
@@ -31,8 +30,8 @@ namespace Bayad_Center_Project
 
             try
             {
-                AccountContext _ = new AccountContext();
-                var accountService = new AccountService(_);
+                DatabaseContext databaseContext = new DatabaseContext();
+                var accountService = new AccountService(databaseContext);
 
                 Account user = new Account()
                 {
@@ -46,9 +45,7 @@ namespace Bayad_Center_Project
                 };
 
                 accountService.RegisterAccount(user);
-            }
-            catch
-            { }
+            } catch { }
 
             tbUsername.Text = Properties.Settings.Default.Username;
             tbPassword.Text = Properties.Settings.Default.Password;
@@ -77,8 +74,8 @@ namespace Bayad_Center_Project
         {
             try
             {
-                AccountContext _ = new AccountContext();
-                AccountService accountService = new AccountService(_);
+                DatabaseContext databaseContext = new DatabaseContext();
+                AccountService accountService = new AccountService(databaseContext);
                 Account user = accountService.ValidateLogin(tbUsername.Text, tbPassword.Text);
 
                 FrmView frmAdminView = new FrmView(user ?? null);

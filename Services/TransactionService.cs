@@ -1,19 +1,15 @@
 using Bayad_Center_Project.Contexts;
-using Bayad_Center_Project.DbContexts;
 using Bayad_Center_Project.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace Bayad_Center_Project.Services
 {
     public class TransactionService
     {
-        private readonly TransactionContext _dbContext;
+        private readonly DatabaseContext _dbContext;
 
-        public TransactionService(TransactionContext dbContext)
+        public TransactionService(DatabaseContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -29,7 +25,7 @@ namespace Bayad_Center_Project.Services
 
         public Transaction GetTransactionById(int transactionId)
         {
-            var transaction = _dbContext.Set<Transaction>().FirstOrDefault(t => t.Id == transactionId);
+            var transaction = _dbContext.Set<Transaction>().FirstOrDefault(t => t.TransactionID == transactionId);
             if (transaction == null)
                 throw new Exception($"Transaction with ID: {transactionId} not found.");
 
@@ -38,7 +34,7 @@ namespace Bayad_Center_Project.Services
 
         public bool DeleteTransaction(Transaction transaction)
         {
-            var existingEntity = _dbContext.Transactions.Local.FirstOrDefault(t => t.Id == transaction.Id);
+            var existingEntity = _dbContext.Transactions.Local.FirstOrDefault(t => t.TransactionID == transaction.TransactionID);
             if (existingEntity != null)
                 _dbContext.Entry(existingEntity).State = EntityState.Detached;
 

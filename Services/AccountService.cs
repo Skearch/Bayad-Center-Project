@@ -1,19 +1,14 @@
 ﻿using Bayad_Center_Project.Contexts;
-using Bayad_Center_Project.DbContexts;
 using Bayad_Center_Project.Entities;
-using Bayad_Center_Project.Enums;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace Bayad_Center_Project.Services
 {
     public class AccountService
     {
-        private readonly AccountContext _dbContext;
+        private readonly DatabaseContext _dbContext;
 
-        public AccountService(AccountContext dbContext)
+        public AccountService(DatabaseContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -42,24 +37,24 @@ namespace Bayad_Center_Project.Services
             return true;
         }
 
-        public bool EditAccountById(int userId, Account user)
+        public bool EditAccountById(int accountID, Account account)
         {
-            var existingUser = _dbContext.Users.FirstOrDefault(u => u.Id == userId);
+            var existingUser = _dbContext.Users.FirstOrDefault(u => u.AccountID == accountID);
             if (existingUser == null)
-                throw new Exception($"Account with ID: {userId} does not exist.");
+                throw new Exception($"Account with ID: {accountID} does not exist.");
 
-            ValidateUserFields(user);
+            ValidateUserFields(account);
 
-            existingUser.Username = user.Username;
-            existingUser.Password = user.Password;
-            existingUser.AccountType = user.AccountType;
-            existingUser.FirstName = user.FirstName;
-            existingUser.MiddleName = user.MiddleName;
-            existingUser.LastName = user.LastName;
-            existingUser.Birthdate = user.Birthdate;
-            existingUser.EmailAddress = user.EmailAddress;
-            existingUser.PhoneNumber = user.PhoneNumber;
-            existingUser.Address = user.Address;
+            existingUser.Username = account.Username;
+            existingUser.Password = account.Password;
+            existingUser.AccountType = account.AccountType;
+            existingUser.FirstName = account.FirstName;
+            existingUser.MiddleName = account.MiddleName;
+            existingUser.LastName = account.LastName;
+            existingUser.Birthdate = account.Birthdate;
+            existingUser.EmailAddress = account.EmailAddress;
+            existingUser.PhoneNumber = account.PhoneNumber;
+            existingUser.Address = account.Address;
 
             _dbContext.SaveChanges();
             return true;
@@ -81,7 +76,7 @@ namespace Bayad_Center_Project.Services
 
         public Account GetAccountById(int accountId)
         {
-            var account = _dbContext.Set<Account>().FirstOrDefault(s => s.Id == accountId);
+            var account = _dbContext.Set<Account>().FirstOrDefault(s => s.AccountID == accountId);
             if (account == null)
                 throw new Exception($"Account with ID: {accountId} not found.");
 

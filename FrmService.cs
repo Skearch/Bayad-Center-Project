@@ -1,9 +1,7 @@
-﻿using Bayad_Center_Project.DbContexts;
+﻿using Bayad_Center_Project.Contexts;
 using Bayad_Center_Project.Entities;
 using Bayad_Center_Project.Enums;
 using Bayad_Center_Project.Services;
-using Microsoft.Data.Sqlite;
-using System.Diagnostics.CodeAnalysis;
 using System.Drawing.Imaging;
 
 namespace Bayad_Center_Project
@@ -51,7 +49,7 @@ namespace Bayad_Center_Project
 
         private void FrmService_Load(object sender, EventArgs e)
         {
-            ServiceContext _ = new ServiceContext();
+            var _ = new DatabaseContext();
             var serviceService = new ServiceService(_);
 
             if (serviceFormRequest.Equals(FormRequest.Edit) || serviceFormRequest.Equals(FormRequest.View))
@@ -138,7 +136,7 @@ namespace Bayad_Center_Project
         {
             try
             {
-                ServiceContext _ = new ServiceContext();
+                var _ = new DatabaseContext();
                 var serviceService = new ServiceService(_);
 
                 switch (serviceFormRequest)
@@ -151,7 +149,7 @@ namespace Bayad_Center_Project
                             Icon = ImageToByteArray(pbIcon.Image)
                         };
 
-                        serviceService.UpdateService(service.Id.Value, serviceEdit);
+                        serviceService.UpdateService(service.ServiceID, serviceEdit);
                         break;
                     case FormRequest.Create:
                         Service serviceCreate = new Service()

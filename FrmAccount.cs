@@ -1,4 +1,4 @@
-﻿using Bayad_Center_Project.DbContexts;
+﻿using Bayad_Center_Project.Contexts;
 using Bayad_Center_Project.Entities;
 using Bayad_Center_Project.Enums;
 using Bayad_Center_Project.Services;
@@ -73,8 +73,8 @@ namespace Bayad_Center_Project
         {
             try
             {
-                AccountContext _ = new AccountContext();
-                var accountService = new AccountService(_);
+                DatabaseContext databaseContext = new DatabaseContext();
+                var accountService = new AccountService(databaseContext);
 
                 switch (accountFormRequest)
                 {
@@ -93,7 +93,7 @@ namespace Bayad_Center_Project
                             Address = string.IsNullOrEmpty(rtbAddress.Text) ? null : rtbAddress.Text
                         };
 
-                        accountService.EditAccountById(account.Id.Value, userEdit);
+                        accountService.EditAccountById(account.AccountID, userEdit);
                         break;
                     case FormRequest.Create:
                         Account userCreate = new Account()

@@ -155,7 +155,6 @@
             btnAccountEdit.Margin = new Padding(0, 5, 0, 10);
             btnAccountEdit.Name = "btnAccountEdit";
             btnAccountEdit.Size = new Size(80, 30);
-            btnAccountEdit.SizeMode = PictureBoxSizeMode.AutoSize;
             btnAccountEdit.TabIndex = 18;
             btnAccountEdit.TabStop = false;
             btnAccountEdit.Click += btnAccountEdit_Click;
@@ -167,7 +166,6 @@
             btnAccountDelete.Margin = new Padding(0, 5, 0, 10);
             btnAccountDelete.Name = "btnAccountDelete";
             btnAccountDelete.Size = new Size(80, 30);
-            btnAccountDelete.SizeMode = PictureBoxSizeMode.AutoSize;
             btnAccountDelete.TabIndex = 16;
             btnAccountDelete.TabStop = false;
             btnAccountDelete.Click += btnAccountDelete_Click;
@@ -179,7 +177,6 @@
             btnAccountCreate.Margin = new Padding(0, 5, 0, 10);
             btnAccountCreate.Name = "btnAccountCreate";
             btnAccountCreate.Size = new Size(80, 30);
-            btnAccountCreate.SizeMode = PictureBoxSizeMode.AutoSize;
             btnAccountCreate.TabIndex = 15;
             btnAccountCreate.TabStop = false;
             btnAccountCreate.Click += btnAccountCreate_Click;
@@ -191,7 +188,6 @@
             btnAccountReload.Margin = new Padding(0, 5, 0, 10);
             btnAccountReload.Name = "btnAccountReload";
             btnAccountReload.Size = new Size(80, 30);
-            btnAccountReload.SizeMode = PictureBoxSizeMode.AutoSize;
             btnAccountReload.TabIndex = 14;
             btnAccountReload.TabStop = false;
             btnAccountReload.Click += btnAccountReload_Click;
@@ -203,7 +199,6 @@
             btnAccountView.Margin = new Padding(0, 5, 0, 10);
             btnAccountView.Name = "btnAccountView";
             btnAccountView.Size = new Size(80, 30);
-            btnAccountView.SizeMode = PictureBoxSizeMode.AutoSize;
             btnAccountView.TabIndex = 13;
             btnAccountView.TabStop = false;
             btnAccountView.Click += btnAccountView_Click;
@@ -255,7 +250,6 @@
             btnServiceDelete.Margin = new Padding(0, 5, 0, 10);
             btnServiceDelete.Name = "btnServiceDelete";
             btnServiceDelete.Size = new Size(80, 30);
-            btnServiceDelete.SizeMode = PictureBoxSizeMode.AutoSize;
             btnServiceDelete.TabIndex = 21;
             btnServiceDelete.TabStop = false;
             btnServiceDelete.Click += btnServiceDelete_Click;
@@ -267,7 +261,6 @@
             btnServiceCreate.Margin = new Padding(0, 5, 0, 10);
             btnServiceCreate.Name = "btnServiceCreate";
             btnServiceCreate.Size = new Size(80, 30);
-            btnServiceCreate.SizeMode = PictureBoxSizeMode.AutoSize;
             btnServiceCreate.TabIndex = 20;
             btnServiceCreate.TabStop = false;
             btnServiceCreate.Click += btnServiceCreate_Click;
@@ -279,7 +272,6 @@
             btnServiceReload.Margin = new Padding(0, 5, 0, 10);
             btnServiceReload.Name = "btnServiceReload";
             btnServiceReload.Size = new Size(80, 30);
-            btnServiceReload.SizeMode = PictureBoxSizeMode.AutoSize;
             btnServiceReload.TabIndex = 19;
             btnServiceReload.TabStop = false;
             btnServiceReload.Click += btnServiceReload_Click;
@@ -291,7 +283,6 @@
             btnServiceView.Margin = new Padding(0, 5, 0, 10);
             btnServiceView.Name = "btnServiceView";
             btnServiceView.Size = new Size(80, 30);
-            btnServiceView.SizeMode = PictureBoxSizeMode.AutoSize;
             btnServiceView.TabIndex = 18;
             btnServiceView.TabStop = false;
             btnServiceView.Click += btnServiceView_Click;
@@ -303,7 +294,6 @@
             btnServiceEdit.Margin = new Padding(0, 5, 0, 10);
             btnServiceEdit.Name = "btnServiceEdit";
             btnServiceEdit.Size = new Size(80, 30);
-            btnServiceEdit.SizeMode = PictureBoxSizeMode.AutoSize;
             btnServiceEdit.TabIndex = 17;
             btnServiceEdit.TabStop = false;
             btnServiceEdit.Click += btnServiceEdit_Click;
@@ -354,7 +344,6 @@
             btnTransactionDelete.Margin = new Padding(0, 5, 0, 10);
             btnTransactionDelete.Name = "btnTransactionDelete";
             btnTransactionDelete.Size = new Size(80, 30);
-            btnTransactionDelete.SizeMode = PictureBoxSizeMode.AutoSize;
             btnTransactionDelete.TabIndex = 27;
             btnTransactionDelete.TabStop = false;
             btnTransactionDelete.Click += btnTransactionDelete_Click;
@@ -366,7 +355,6 @@
             btnTransactionCreate.Margin = new Padding(0, 5, 0, 10);
             btnTransactionCreate.Name = "btnTransactionCreate";
             btnTransactionCreate.Size = new Size(80, 30);
-            btnTransactionCreate.SizeMode = PictureBoxSizeMode.AutoSize;
             btnTransactionCreate.TabIndex = 26;
             btnTransactionCreate.TabStop = false;
             btnTransactionCreate.Click += btnTransactionCreate_Click;
@@ -378,7 +366,6 @@
             btnTransactionReload.Margin = new Padding(0, 5, 0, 10);
             btnTransactionReload.Name = "btnTransactionReload";
             btnTransactionReload.Size = new Size(80, 30);
-            btnTransactionReload.SizeMode = PictureBoxSizeMode.AutoSize;
             btnTransactionReload.TabIndex = 25;
             btnTransactionReload.TabStop = false;
             btnTransactionReload.Click += btnTransactionReload_Click;
@@ -390,7 +377,6 @@
             btnTransactionView.Margin = new Padding(0, 5, 0, 10);
             btnTransactionView.Name = "btnTransactionView";
             btnTransactionView.Size = new Size(80, 30);
-            btnTransactionView.SizeMode = PictureBoxSizeMode.AutoSize;
             btnTransactionView.TabIndex = 24;
             btnTransactionView.TabStop = false;
             btnTransactionView.Click += btnTransactionView_Click;
@@ -425,7 +411,6 @@
             btnMinimize.Location = new Point(836, 17);
             btnMinimize.Name = "btnMinimize";
             btnMinimize.Size = new Size(18, 18);
-            btnMinimize.SizeMode = PictureBoxSizeMode.AutoSize;
             btnMinimize.TabIndex = 18;
             btnMinimize.TabStop = false;
             btnMinimize.Click += btnMinimize_Click;
@@ -436,7 +421,6 @@
             btnExit.Location = new Point(860, 17);
             btnExit.Name = "btnExit";
             btnExit.Size = new Size(18, 18);
-            btnExit.SizeMode = PictureBoxSizeMode.AutoSize;
             btnExit.TabIndex = 17;
             btnExit.TabStop = false;
             btnExit.Click += btnExit_Click;
@@ -447,7 +431,6 @@
             pbIcon.Location = new Point(10, 10);
             pbIcon.Name = "pbIcon";
             pbIcon.Size = new Size(171, 32);
-            pbIcon.SizeMode = PictureBoxSizeMode.AutoSize;
             pbIcon.TabIndex = 9;
             pbIcon.TabStop = false;
             // 
@@ -472,7 +455,6 @@
             btnAccounts.Margin = new Padding(0, 0, 0, 10);
             btnAccounts.Name = "btnAccounts";
             btnAccounts.Size = new Size(113, 20);
-            btnAccounts.SizeMode = PictureBoxSizeMode.AutoSize;
             btnAccounts.TabIndex = 10;
             btnAccounts.TabStop = false;
             btnAccounts.Click += btnAccounts_Click;
@@ -486,7 +468,6 @@
             btnServices.Margin = new Padding(0, 0, 0, 10);
             btnServices.Name = "btnServices";
             btnServices.Size = new Size(107, 20);
-            btnServices.SizeMode = PictureBoxSizeMode.AutoSize;
             btnServices.TabIndex = 11;
             btnServices.TabStop = false;
             btnServices.Click += btnServices_Click;
@@ -500,7 +481,6 @@
             btnTransactions.Margin = new Padding(0, 0, 0, 10);
             btnTransactions.Name = "btnTransactions";
             btnTransactions.Size = new Size(139, 20);
-            btnTransactions.SizeMode = PictureBoxSizeMode.AutoSize;
             btnTransactions.TabIndex = 12;
             btnTransactions.TabStop = false;
             btnTransactions.Click += btnTransactions_Click;
@@ -514,7 +494,6 @@
             btnLogout.Margin = new Padding(0, 0, 0, 10);
             btnLogout.Name = "btnLogout";
             btnLogout.Size = new Size(94, 20);
-            btnLogout.SizeMode = PictureBoxSizeMode.AutoSize;
             btnLogout.TabIndex = 13;
             btnLogout.TabStop = false;
             btnLogout.Click += btnLogout_Click;
@@ -535,7 +514,6 @@
             Load += FrmAdminView_Load;
             tcMenu.ResumeLayout(false);
             tpAccounts.ResumeLayout(false);
-            tpAccounts.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvAccount).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnAccountEdit).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnAccountDelete).EndInit();
@@ -543,7 +521,6 @@
             ((System.ComponentModel.ISupportInitialize)btnAccountReload).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnAccountView).EndInit();
             tpServices.ResumeLayout(false);
-            tpServices.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvService).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnServiceDelete).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnServiceCreate).EndInit();
@@ -551,7 +528,6 @@
             ((System.ComponentModel.ISupportInitialize)btnServiceView).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnServiceEdit).EndInit();
             tpTransactions.ResumeLayout(false);
-            tpTransactions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvTransaction).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnTransactionDelete).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnTransactionCreate).EndInit();
@@ -563,7 +539,6 @@
             ((System.ComponentModel.ISupportInitialize)btnExit).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbIcon).EndInit();
             flpLeft.ResumeLayout(false);
-            flpLeft.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)btnAccounts).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnServices).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnTransactions).EndInit();

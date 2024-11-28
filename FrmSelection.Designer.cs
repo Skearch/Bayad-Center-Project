@@ -92,7 +92,9 @@
             Controls.Add(btnSelect);
             Controls.Add(lblTitle);
             Controls.Add(dgvSelection);
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "FrmSelection";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmSelection";
             Load += FrmSelection_Load;
             ((System.ComponentModel.ISupportInitialize)dgvSelection).EndInit();

@@ -336,6 +336,7 @@
             Controls.Add(tbPassword);
             Controls.Add(label1);
             Controls.Add(tbUsername);
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "FrmAccount";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmAccount";

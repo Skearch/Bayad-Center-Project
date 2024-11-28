@@ -1,8 +1,8 @@
 ﻿using Bayad_Center_Project.Contexts;
-using Bayad_Center_Project.DbContexts;
 using Bayad_Center_Project.Entities;
 using Bayad_Center_Project.Enums;
 using Bayad_Center_Project.Services;
+using System.Data.SqlClient;
 
 namespace Bayad_Center_Project
 {
@@ -10,15 +10,15 @@ namespace Bayad_Center_Project
     {
         FormRequest transactionFormRequest;
         public Transaction transaction;
-        public Account user;
+        public Account account;
         public Service service;
 
-        public FrmTransaction(FormRequest transactionFormRequest, Account user, Transaction transaction)
+        public FrmTransaction(FormRequest transactionFormRequest, Account account, Transaction transaction)
         {
             InitializeComponent();
             this.transaction = transaction;
             this.transactionFormRequest = transactionFormRequest;
-            this.user = user;
+            this.account = account;
         }
 
         private void FrmTransaction_Load(object sender, EventArgs e)
@@ -29,16 +29,21 @@ namespace Bayad_Center_Project
                     tbAccountNumber.Text = transaction.AccountNumber;
                     tbFullName.Text = transaction.AccountNumber;
                     tbEmail.Text = transaction.AccountNumber;
-                    tbAmount.Text = transaction.AccountNumber;
+                    tbAmountToPay.Text = transaction.AccountNumber;
                     rtbMessage.Text = transaction.Message;
 
-                    AccountContext userContext = new AccountContext();
-                    AccountService accountService = new AccountService(userContext);
-                    tbUser.Text = accountService.GetAccountById((int)transaction.AccountId).Username;
+                    var databaseContext = new DatabaseContext();
+                    var accountService = new AccountService(databaseContext);
+                    tbIssuer.Text = accountService.GetAccountById((int)transaction.AccountId).Username;
 
-                    ServiceContext serviceContext = new ServiceContext();
-                    ServiceService serviceService = new ServiceService(serviceContext);
+                    var serviceService = new ServiceService(databaseContext);
                     tbServiceName.Text = serviceService.GetServiceById((int)transaction.ServiceId).Name;
+
+                    var receiptService = new ReceiptService(databaseContext);
+                    var receipt = receiptService.GetReceiptByTransactionId((int)transaction.TransactionID);
+                    tbAmountToPay.Text = receipt.AmountToPay.ToString();
+                    tbPaymentAmount.Text = receipt.PaymentAmount.ToString();
+                    tbChange.Text = receipt.Change.ToString();
 
                     btnAction.Text = "Close";
                     btnSetService.Visible = false;
@@ -60,9 +65,10 @@ namespace Bayad_Center_Project
                 case FormRequest.Create:
                     btnServiceView.Visible = false;
                     btnAccountView.Visible = false;
+                    btnReceiptView.Visible = false;
 
                     btnAction.Text = "Create";
-                    tbUser.Text = user.Username;
+                    tbIssuer.Text = account.Username;
                     break;
             }
         }
@@ -75,27 +81,43 @@ namespace Bayad_Center_Project
                 {
                     case FormRequest.Create:
 
-                        if (user == null || service == null)
+                        if (account == null || service == null)
                             new Exception("Service or Teller cannot be null.");
 
-                        Transaction transactionCreate = new Transaction()
+                        var transactionCreate = new Transaction()
                         {
-                            AccountId = user.Id,
-                            ServiceId = service.Id,
-                            Amount = string.IsNullOrEmpty(tbAmount.Text) ? 0 : decimal.Parse(tbAmount.Text),
+                            AccountId = account.AccountID,
+                            ServiceId = service.ServiceID,
                             AccountNumber = string.IsNullOrEmpty(tbAccountNumber.Text) ? null : tbAccountNumber.Text,
                             FullName = string.IsNullOrEmpty(tbFullName.Text) ? null : tbFullName.Text,
                             Email = string.IsNullOrEmpty(tbEmail.Text) ? null : tbEmail.Text,
                             Message = string.IsNullOrEmpty(rtbMessage.Text) ? null : rtbMessage.Text,
                         };
 
-                        TransactionContext _ = new TransactionContext();
-                        var transactionService = new TransactionService(_);
+                        var transactionService = new TransactionService(new DatabaseContext());
                         transactionService.AddTransaction(transactionCreate);
+
+                        var receiptCreate = new Receipt()
+                        {
+                            TransactionId = transactionCreate.TransactionID,
+                            AccountID = account.AccountID,
+                            DateIssued = DateTime.Now,
+                            AmountToPay = string.IsNullOrEmpty(tbAmountToPay.Text) ? 0 : decimal.Parse(tbAmountToPay.Text),
+                            PaymentAmount = string.IsNullOrEmpty(tbPaymentAmount.Text) ? 0 : decimal.Parse(tbPaymentAmount.Text),
+                            Change = string.IsNullOrEmpty(tbChange.Text) ? 0 : decimal.Parse(tbChange.Text),
+                        };
+
+                        var receiptService = new ReceiptService(new DatabaseContext());
+                        receiptService.CreateReceipt(receiptCreate);
+
                         break;
                 }
 
                 this.Hide();
+            }
+            catch (SqlException sql)
+            {
+                MessageBox.Show(sql.Message, "SQL Error");
             }
             catch (Exception ex)
             {
@@ -107,10 +129,14 @@ namespace Bayad_Center_Project
         {
             try
             {
-                AccountService accountService = new AccountService(new AccountContext());
+                AccountService accountService = new AccountService(new DatabaseContext());
                 Account account = accountService.GetAccountById((int)transaction.AccountId);
                 FrmAccount frmAccount = new FrmAccount(FormRequest.View, account);
                 frmAccount.Show();
+            }
+            catch (SqlException sql)
+            {
+                MessageBox.Show(sql.Message, "SQL Error");
             }
             catch (Exception ex)
             {
@@ -122,10 +148,14 @@ namespace Bayad_Center_Project
         {
             try
             {
-                ServiceService serviceService = new ServiceService(new ServiceContext());
+                ServiceService serviceService = new ServiceService(new DatabaseContext());
                 Service service = serviceService.GetServiceById((int)transaction.ServiceId);
                 FrmService frmService = new FrmService(FormRequest.View, service);
                 frmService.Show();
+            }
+            catch (SqlException sql)
+            {
+                MessageBox.Show(sql.Message, "SQL Error");
             }
             catch (Exception ex)
             {
@@ -136,12 +166,12 @@ namespace Bayad_Center_Project
         private void btnSetService_Click(object sender, EventArgs e)
         {
             string title = "Please select a service";
-            var serviceContext = new ServiceContext();
+            var serviceContext = new DatabaseContext();
             var serviceService = new ServiceService(serviceContext);
             var services = serviceService.GetAllServices();
             var test = services.Select(s => new
             {
-                s.Id,
+                s.ServiceID,
                 s.Name,
             }).ToList();
 
@@ -163,6 +193,37 @@ namespace Bayad_Center_Project
                 service = serviceService.GetServiceById(selectedID);
                 tbServiceName.Text = service.Name;
             };
+        }
+
+        private void tbAmountToPay_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                decimal amountToPay = decimal.Parse(tbAmountToPay.Text);
+                decimal paymentAmount = decimal.Parse(tbPaymentAmount.Text);
+
+                tbChange.Text = (paymentAmount - amountToPay).ToString();
+            }
+            catch { }
+        }
+
+        private void btnReceiptView_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var receiptService = new ReceiptService(new DatabaseContext());
+                var receipt = receiptService.GetReceiptByTransactionId((int)transaction.TransactionID);
+                var frmReceipt = new FrmReceipt(receipt);
+                frmReceipt.Show();
+            }
+            catch (SqlException sql)
+            {
+                MessageBox.Show(sql.Message, "SQL Error");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
         }
     }
 }

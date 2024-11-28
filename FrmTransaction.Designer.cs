@@ -35,7 +35,7 @@
             label1 = new Label();
             tbFullName = new TextBox();
             label2 = new Label();
-            tbAmount = new TextBox();
+            tbAmountToPay = new TextBox();
             label3 = new Label();
             rtbMessage = new RichTextBox();
             lblRequiredFields = new Label();
@@ -43,13 +43,16 @@
             tbServiceName = new TextBox();
             btnSetService = new Button();
             btnAction = new Button();
-            tbUser = new TextBox();
+            tbIssuer = new TextBox();
             label6 = new Label();
             btnServiceView = new Button();
             btnAccountView = new Button();
             label11 = new Label();
-            flowLayoutPanel1 = new FlowLayoutPanel();
-            flowLayoutPanel1.SuspendLayout();
+            label7 = new Label();
+            tbPaymentAmount = new TextBox();
+            label8 = new Label();
+            tbChange = new TextBox();
+            btnReceiptView = new Button();
             SuspendLayout();
             // 
             // label4
@@ -116,21 +119,22 @@
             // 
             label2.AutoSize = true;
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(12, 159);
+            label2.Location = new Point(12, 258);
             label2.Name = "label2";
-            label2.Size = new Size(59, 15);
+            label2.Size = new Size(96, 15);
             label2.TabIndex = 32;
-            label2.Text = "Amount *";
+            label2.Text = "Amount To Pay *";
             // 
-            // tbAmount
+            // tbAmountToPay
             // 
-            tbAmount.BackColor = Color.Silver;
-            tbAmount.BorderStyle = BorderStyle.None;
-            tbAmount.ForeColor = Color.Black;
-            tbAmount.Location = new Point(12, 177);
-            tbAmount.Name = "tbAmount";
-            tbAmount.Size = new Size(176, 16);
-            tbAmount.TabIndex = 31;
+            tbAmountToPay.BackColor = Color.Silver;
+            tbAmountToPay.BorderStyle = BorderStyle.None;
+            tbAmountToPay.ForeColor = Color.Black;
+            tbAmountToPay.Location = new Point(12, 276);
+            tbAmountToPay.Name = "tbAmountToPay";
+            tbAmountToPay.Size = new Size(176, 16);
+            tbAmountToPay.TabIndex = 31;
+            tbAmountToPay.TextChanged += tbAmountToPay_TextChanged;
             // 
             // label3
             // 
@@ -149,7 +153,7 @@
             rtbMessage.ForeColor = Color.Black;
             rtbMessage.Location = new Point(207, 66);
             rtbMessage.Name = "rtbMessage";
-            rtbMessage.Size = new Size(296, 159);
+            rtbMessage.Size = new Size(375, 159);
             rtbMessage.TabIndex = 42;
             rtbMessage.Text = "";
             // 
@@ -167,7 +171,7 @@
             // 
             label5.AutoSize = true;
             label5.ForeColor = Color.Black;
-            label5.Location = new Point(12, 196);
+            label5.Location = new Point(12, 159);
             label5.Name = "label5";
             label5.Size = new Size(52, 15);
             label5.TabIndex = 47;
@@ -178,7 +182,7 @@
             tbServiceName.BackColor = Color.Silver;
             tbServiceName.BorderStyle = BorderStyle.None;
             tbServiceName.ForeColor = Color.Black;
-            tbServiceName.Location = new Point(12, 214);
+            tbServiceName.Location = new Point(12, 177);
             tbServiceName.Name = "tbServiceName";
             tbServiceName.ReadOnly = true;
             tbServiceName.Size = new Size(176, 16);
@@ -191,7 +195,7 @@
             btnSetService.FlatAppearance.BorderSize = 0;
             btnSetService.FlatStyle = FlatStyle.Flat;
             btnSetService.ForeColor = Color.White;
-            btnSetService.Location = new Point(61, 3);
+            btnSetService.Location = new Point(12, 199);
             btnSetService.Name = "btnSetService";
             btnSetService.Size = new Size(44, 27);
             btnSetService.TabIndex = 49;
@@ -205,7 +209,7 @@
             btnAction.FlatAppearance.BorderSize = 0;
             btnAction.FlatStyle = FlatStyle.Flat;
             btnAction.ForeColor = Color.White;
-            btnAction.Location = new Point(344, 288);
+            btnAction.Location = new Point(423, 411);
             btnAction.Name = "btnAction";
             btnAction.Size = new Size(159, 45);
             btnAction.TabIndex = 50;
@@ -213,26 +217,26 @@
             btnAction.UseVisualStyleBackColor = false;
             btnAction.Click += btnAction_Click;
             // 
-            // tbUser
+            // tbIssuer
             // 
-            tbUser.BackColor = Color.Silver;
-            tbUser.BorderStyle = BorderStyle.None;
-            tbUser.ForeColor = Color.Black;
-            tbUser.Location = new Point(12, 284);
-            tbUser.Name = "tbUser";
-            tbUser.ReadOnly = true;
-            tbUser.Size = new Size(176, 16);
-            tbUser.TabIndex = 52;
+            tbIssuer.BackColor = Color.Silver;
+            tbIssuer.BorderStyle = BorderStyle.None;
+            tbIssuer.ForeColor = Color.Black;
+            tbIssuer.Location = new Point(204, 276);
+            tbIssuer.Name = "tbIssuer";
+            tbIssuer.ReadOnly = true;
+            tbIssuer.Size = new Size(176, 16);
+            tbIssuer.TabIndex = 52;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.ForeColor = Color.Black;
-            label6.Location = new Point(12, 266);
+            label6.Location = new Point(207, 258);
             label6.Name = "label6";
-            label6.Size = new Size(75, 15);
+            label6.Size = new Size(64, 15);
             label6.TabIndex = 51;
-            label6.Text = "Teller Issuer *";
+            label6.Text = "Issued By *";
             // 
             // btnServiceView
             // 
@@ -241,11 +245,11 @@
             btnServiceView.FlatAppearance.BorderSize = 0;
             btnServiceView.FlatStyle = FlatStyle.Flat;
             btnServiceView.ForeColor = Color.White;
-            btnServiceView.Location = new Point(3, 3);
+            btnServiceView.Location = new Point(305, 430);
             btnServiceView.Name = "btnServiceView";
-            btnServiceView.Size = new Size(52, 27);
+            btnServiceView.Size = new Size(112, 26);
             btnServiceView.TabIndex = 53;
-            btnServiceView.Text = "View";
+            btnServiceView.Text = "View Service";
             btnServiceView.UseVisualStyleBackColor = false;
             btnServiceView.Click += btnServiceView_Click;
             // 
@@ -256,11 +260,11 @@
             btnAccountView.FlatAppearance.BorderSize = 0;
             btnAccountView.FlatStyle = FlatStyle.Flat;
             btnAccountView.ForeColor = Color.White;
-            btnAccountView.Location = new Point(12, 306);
+            btnAccountView.Location = new Point(197, 430);
             btnAccountView.Name = "btnAccountView";
-            btnAccountView.Size = new Size(53, 27);
+            btnAccountView.Size = new Size(102, 26);
             btnAccountView.TabIndex = 54;
-            btnAccountView.Text = "View";
+            btnAccountView.Text = "View Issuer";
             btnAccountView.UseVisualStyleBackColor = false;
             btnAccountView.Click += btnAccountView_Click;
             // 
@@ -275,26 +279,79 @@
             label11.TabIndex = 55;
             label11.Text = "Transaction Details";
             // 
-            // flowLayoutPanel1
+            // label7
             // 
-            flowLayoutPanel1.Controls.Add(btnServiceView);
-            flowLayoutPanel1.Controls.Add(btnSetService);
-            flowLayoutPanel1.Location = new Point(12, 232);
-            flowLayoutPanel1.Margin = new Padding(0);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(200, 34);
-            flowLayoutPanel1.TabIndex = 56;
+            label7.AutoSize = true;
+            label7.ForeColor = Color.Black;
+            label7.Location = new Point(12, 298);
+            label7.Name = "label7";
+            label7.Size = new Size(109, 15);
+            label7.TabIndex = 58;
+            label7.Text = "Payment Amount *";
+            // 
+            // tbPaymentAmount
+            // 
+            tbPaymentAmount.BackColor = Color.Silver;
+            tbPaymentAmount.BorderStyle = BorderStyle.None;
+            tbPaymentAmount.ForeColor = Color.Black;
+            tbPaymentAmount.Location = new Point(12, 316);
+            tbPaymentAmount.Name = "tbPaymentAmount";
+            tbPaymentAmount.Size = new Size(176, 16);
+            tbPaymentAmount.TabIndex = 57;
+            tbPaymentAmount.TextChanged += tbAmountToPay_TextChanged;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.ForeColor = Color.Black;
+            label8.Location = new Point(12, 335);
+            label8.Name = "label8";
+            label8.Size = new Size(56, 15);
+            label8.TabIndex = 60;
+            label8.Text = "Change *";
+            // 
+            // tbChange
+            // 
+            tbChange.BackColor = Color.Silver;
+            tbChange.BorderStyle = BorderStyle.None;
+            tbChange.ForeColor = Color.Black;
+            tbChange.Location = new Point(12, 353);
+            tbChange.Name = "tbChange";
+            tbChange.ReadOnly = true;
+            tbChange.Size = new Size(176, 16);
+            tbChange.TabIndex = 59;
+            // 
+            // btnReceiptView
+            // 
+            btnReceiptView.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnReceiptView.BackColor = Color.Gray;
+            btnReceiptView.FlatAppearance.BorderSize = 0;
+            btnReceiptView.FlatStyle = FlatStyle.Flat;
+            btnReceiptView.ForeColor = Color.White;
+            btnReceiptView.Location = new Point(82, 430);
+            btnReceiptView.Name = "btnReceiptView";
+            btnReceiptView.Size = new Size(109, 26);
+            btnReceiptView.TabIndex = 61;
+            btnReceiptView.Text = "View Receipt";
+            btnReceiptView.UseVisualStyleBackColor = false;
+            btnReceiptView.Click += btnReceiptView_Click;
             // 
             // FrmTransaction
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(230, 239, 245);
-            ClientSize = new Size(514, 342);
-            Controls.Add(flowLayoutPanel1);
+            ClientSize = new Size(591, 466);
+            Controls.Add(btnReceiptView);
+            Controls.Add(btnSetService);
+            Controls.Add(btnServiceView);
+            Controls.Add(label8);
+            Controls.Add(tbChange);
+            Controls.Add(label7);
+            Controls.Add(tbPaymentAmount);
             Controls.Add(label11);
             Controls.Add(btnAccountView);
-            Controls.Add(tbUser);
+            Controls.Add(tbIssuer);
             Controls.Add(label6);
             Controls.Add(btnAction);
             Controls.Add(tbServiceName);
@@ -303,18 +360,18 @@
             Controls.Add(rtbMessage);
             Controls.Add(label3);
             Controls.Add(label2);
-            Controls.Add(tbAmount);
+            Controls.Add(tbAmountToPay);
             Controls.Add(label1);
             Controls.Add(tbFullName);
             Controls.Add(lblEmail);
             Controls.Add(tbEmail);
             Controls.Add(label4);
             Controls.Add(tbAccountNumber);
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "FrmTransaction";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmTransaction";
             Load += FrmTransaction_Load;
-            flowLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -328,7 +385,7 @@
         private Label label1;
         private TextBox tbFullName;
         private Label label2;
-        private TextBox tbAmount;
+        private TextBox tbAmountToPay;
         private Label label3;
         private RichTextBox rtbMessage;
         private Label lblRequiredFields;
@@ -336,11 +393,15 @@
         private TextBox tbServiceName;
         private Button btnSetService;
         private Button btnAction;
-        private TextBox tbUser;
+        private TextBox tbIssuer;
         private Label label6;
         private Button btnServiceView;
         private Button btnAccountView;
         private Label label11;
-        private FlowLayoutPanel flowLayoutPanel1;
+        private Label label7;
+        private TextBox tbPaymentAmount;
+        private Label label8;
+        private TextBox tbChange;
+        private Button btnReceiptView;
     }
 }

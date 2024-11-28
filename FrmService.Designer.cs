@@ -190,6 +190,7 @@
             Controls.Add(btnClearImage);
             Controls.Add(pbIcon);
             Controls.Add(btnSetImage);
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "FrmService";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FrmService";

@@ -1,18 +1,14 @@
 ﻿using Bayad_Center_Project.Contexts;
-using Bayad_Center_Project.DbContexts;
 using Bayad_Center_Project.Entities;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace Bayad_Center_Project.Services
 {
     public class ServiceService
     {
-        private readonly ServiceContext _dbContext;
+        private readonly DatabaseContext _dbContext;
 
-        public ServiceService(ServiceContext dbContext)
+        public ServiceService(DatabaseContext dbContext)
         {
             _dbContext = dbContext;
         }
@@ -28,7 +24,7 @@ namespace Bayad_Center_Project.Services
 
         public Service GetServiceById(int serviceId)
         {
-            var service = _dbContext.Set<Service>().FirstOrDefault(s => s.Id == serviceId);
+            var service = _dbContext.Set<Service>().FirstOrDefault(s => s.ServiceID == serviceId);
             if (service == null)
                 throw new Exception($"Service with ID: {serviceId} not found.");
 
@@ -37,7 +33,7 @@ namespace Bayad_Center_Project.Services
 
         public bool UpdateService(int serviceId, Service updatedService)
         {
-            var service = _dbContext.Set<Service>().FirstOrDefault(s => s.Id == serviceId);
+            var service = _dbContext.Set<Service>().FirstOrDefault(s => s.ServiceID == serviceId);
             if (service == null)
                 throw new Exception($"Service with ID: {serviceId} not found.");
 
